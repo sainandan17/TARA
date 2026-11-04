@@ -1,22 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 :root {
   color-scheme: dark;
-  --void: #01030a;
-  --void-soft: #030813;
-  --ink: #f6f2ff;
-  --muted: #a49bb8;
-  --soft: #d9d0ea;
-  --line: rgba(205, 180, 255, 0.13);
-  --line-strong: rgba(214, 190, 255, 0.28);
-  --violet: #b58cff;
-  --violet-bright: #dcc6ff;
-  --gold: #f0c98c;
-  --blue: #8dbdff;
-  --panel: rgba(3, 7, 16, 0.66);
-  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --sans: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --void: #000000;
+  --void-soft: #050505;
+  --ink: #f4f4f4;
+  --muted: #9f9f9f;
+  --soft: #d4d4d4;
+  --line: rgba(191, 191, 191, 0.13);
+  --line-strong: rgba(200, 200, 200, 0.28);
+  --violet: #9d9d9d;
+  --violet-bright: #cfcfcf;
+  --gold: #cdcdcd;
+  --blue: #b8b8b8;
+  --panel: rgba(7, 7, 7, 0.66);
+  --serif: "Inter", "Segoe UI", system-ui, sans-serif;
+  --sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --display: "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
 * {
@@ -27,7 +27,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
   overflow-x: clip;
-  scrollbar-color: rgba(70, 110, 190, 0.4) rgba(1, 3, 7, 0.9);
+  scrollbar-color: rgba(107, 107, 107, 0.4) rgba(3, 3, 3, 0.9);
 }
 
 body {
@@ -38,8 +38,8 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background:
-    radial-gradient(ellipse 70% 48% at 50% -12%, rgba(28, 62, 140, 0.22), transparent 62%),
-    radial-gradient(ellipse 50% 40% at 8% 55%, rgba(18, 42, 100, 0.12), transparent 70%),
+    radial-gradient(ellipse 70% 48% at 50% -12%, rgba(60, 60, 60, 0.22), transparent 62%),
+    radial-gradient(ellipse 50% 40% at 8% 55%, rgba(41, 41, 41, 0.12), transparent 70%),
     var(--void);
   font-family: var(--sans);
   font-weight: 300;
@@ -60,8 +60,8 @@ body::after {
 }
 
 ::selection {
-  color: #0c0716;
-  background: #d8c0ff;
+  color: #090909;
+  background: #cacaca;
 }
 
 a {
@@ -105,13 +105,13 @@ a:focus-visible {
 .milky-band {
   z-index: -4;
   background:
-    linear-gradient(112deg, transparent 28%, rgba(30, 66, 140, 0.08) 45%, rgba(60, 105, 190, 0.11) 51%, rgba(26, 58, 125, 0.08) 57%, transparent 72%),
+    linear-gradient(112deg, transparent 28%, rgba(64, 64, 64, 0.08) 45%, rgba(102, 102, 102, 0.11) 51%, rgba(56, 56, 56, 0.08) 57%, transparent 72%),
     url("/textures/2k_stars_milky_way.jpg") center / cover no-repeat;
   filter: blur(0.4px) saturate(0.7);
   opacity: 0.13;
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse 90% 62% at 50% 46%, #000 8%, transparent 78%);
-  mask-image: radial-gradient(ellipse 90% 62% at 50% 46%, #000 8%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 62% at 50% 46%, #000000 8%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 62% at 50% 46%, #000000 8%, transparent 78%);
   transform: scale(1.06);
 }
 
@@ -124,30 +124,30 @@ a:focus-visible {
 
 .nebula-a {
   background:
-    radial-gradient(ellipse 30% 20% at 18% 18%, rgba(34, 74, 160, 0.22), transparent 72%),
-    radial-gradient(ellipse 22% 16% at 30% 32%, rgba(24, 56, 132, 0.16), transparent 74%);
+    radial-gradient(ellipse 30% 20% at 18% 18%, rgba(72, 72, 72, 0.22), transparent 72%),
+    radial-gradient(ellipse 22% 16% at 30% 32%, rgba(55, 55, 55, 0.16), transparent 74%);
   animation: nebula-drift-a 38s ease-in-out infinite alternate;
 }
 
 .nebula-b {
   background:
-    radial-gradient(ellipse 26% 18% at 82% 38%, rgba(30, 68, 150, 0.18), transparent 74%),
-    radial-gradient(ellipse 20% 15% at 70% 62%, rgba(22, 52, 122, 0.13), transparent 72%);
+    radial-gradient(ellipse 26% 18% at 82% 38%, rgba(66, 66, 66, 0.18), transparent 74%),
+    radial-gradient(ellipse 20% 15% at 70% 62%, rgba(51, 51, 51, 0.13), transparent 72%);
   animation: nebula-drift-b 46s ease-in-out infinite alternate-reverse;
 }
 
 .nebula-c {
   background:
-    radial-gradient(ellipse 32% 18% at 48% 92%, rgba(26, 62, 138, 0.17), transparent 76%),
-    radial-gradient(ellipse 18% 14% at 10% 72%, rgba(20, 48, 112, 0.12), transparent 74%);
+    radial-gradient(ellipse 32% 18% at 48% 92%, rgba(60, 60, 60, 0.17), transparent 76%),
+    radial-gradient(ellipse 18% 14% at 10% 72%, rgba(47, 47, 47, 0.12), transparent 74%);
   animation: nebula-drift-a 58s ease-in-out infinite alternate-reverse;
 }
 
 .vignette {
   z-index: -3;
   background:
-    radial-gradient(ellipse at 50% 38%, transparent 38%, rgba(1, 2, 4, 0.42) 100%),
-    linear-gradient(180deg, rgba(1, 2, 4, 0.18), transparent 20%, transparent 78%, rgba(1, 2, 4, 0.42));
+    radial-gradient(ellipse at 50% 38%, transparent 38%, rgba(2, 2, 2, 0.42) 100%),
+    linear-gradient(180deg, rgba(2, 2, 2, 0.18), transparent 20%, transparent 78%, rgba(2, 2, 2, 0.42));
 }
 
 /* ------------------------------------------------------------------ */
@@ -161,7 +161,7 @@ a:focus-visible {
   left: 0;
   width: 100%;
   height: 2px;
-  background: rgba(190, 160, 250, 0.08);
+  background: rgba(173, 173, 173, 0.08);
 }
 
 .scroll-progress > div {
@@ -169,8 +169,8 @@ a:focus-visible {
   height: 100%;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, rgba(181, 140, 255, 0.2), var(--violet), #f4d8ff);
-  box-shadow: 0 0 12px rgba(181, 140, 255, 0.7);
+  background: linear-gradient(90deg, rgba(157, 157, 157, 0.2), var(--violet), #e1e1e1);
+  box-shadow: 0 0 12px rgba(157, 157, 157, 0.7);
 }
 
 .site-header {
@@ -184,8 +184,8 @@ a:focus-visible {
   justify-content: space-between;
   gap: 28px;
   padding: 22px clamp(22px, 5vw, 74px);
-  border-bottom: 1px solid rgba(214, 190, 255, 0.08);
-  background: linear-gradient(180deg, rgba(1, 3, 6, 0.72), rgba(1, 3, 6, 0.24));
+  border-bottom: 1px solid rgba(200, 200, 200, 0.08);
+  background: linear-gradient(180deg, rgba(3, 3, 3, 0.72), rgba(3, 3, 3, 0.24));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -206,7 +206,7 @@ a:focus-visible {
   margin-left: 5px;
   color: var(--gold);
   font-size: 0.74em;
-  text-shadow: 0 0 14px rgba(240, 201, 140, 0.8);
+  text-shadow: 0 0 14px rgba(205, 205, 205, 0.8);
   animation: star-twinkle 4s ease-in-out infinite;
 }
 
@@ -233,7 +233,7 @@ a:focus-visible {
 .wordmark:focus-visible .wordmark-letter,
 .wordmark:hover .wordmark-letter {
   translate: 0 -3px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .wordmark:focus-visible .wordmark-star,
@@ -248,7 +248,7 @@ a:focus-visible {
 
 .site-header nav a,
 .header-cta {
-  color: #b9aecf;
+  color: #b3b3b3;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.09em;
@@ -275,7 +275,7 @@ a:focus-visible {
 
 .site-header nav a:hover,
 .header-cta:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .site-header nav a:hover::after {
@@ -284,9 +284,9 @@ a:focus-visible {
 
 .header-cta {
   padding: 9px 14px;
-  border: 1px solid rgba(211, 185, 255, 0.24);
+  border: 1px solid rgba(196, 196, 196, 0.24);
   border-radius: 2px;
-  background: rgba(125, 88, 185, 0.08);
+  background: rgba(103, 103, 103, 0.08);
   white-space: nowrap;
   transition:
     color 180ms ease,
@@ -300,8 +300,8 @@ a:focus-visible {
 }
 
 .header-cta:hover {
-  border-color: rgba(220, 198, 255, 0.6);
-  background: rgba(125, 88, 185, 0.17);
+  border-color: rgba(207, 207, 207, 0.6);
+  background: rgba(103, 103, 103, 0.17);
 }
 
 /* ------------------------------------------------------------------ */
@@ -314,7 +314,7 @@ a:focus-visible {
   justify-content: center;
   gap: 10px;
   margin: 0 0 16px;
-  color: #c3b6d9;
+  color: #bbbbbb;
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -329,13 +329,13 @@ a:focus-visible {
   height: 7px;
   transform: rotate(45deg);
   background: var(--violet-bright);
-  box-shadow: 0 0 14px rgba(205, 170, 255, 0.9);
+  box-shadow: 0 0 14px rgba(184, 184, 184, 0.9);
 }
 
 .eyebrow-star::after {
   position: absolute;
   inset: -5px;
-  border: 1px solid rgba(205, 170, 255, 0.45);
+  border: 1px solid rgba(184, 184, 184, 0.45);
   border-radius: 50%;
   content: "";
 }
@@ -358,7 +358,7 @@ a:focus-visible {
 
 .section-heading h2 {
   margin: 0;
-  color: #f5efff;
+  color: #f1f1f1;
   font-family: var(--serif);
   font-size: clamp(44px, 6.4vw, 78px);
   font-weight: 300;
@@ -381,9 +381,9 @@ a:focus-visible {
   justify-content: center;
   gap: 16px;
   padding: 0 24px;
-  border: 1px solid rgba(212, 187, 255, 0.45);
+  border: 1px solid rgba(197, 197, 197, 0.45);
   border-radius: 2px;
-  color: #f2eaff;
+  color: #ededed;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -398,27 +398,27 @@ a:focus-visible {
 
 .button.primary {
   border-color: transparent;
-  background: linear-gradient(120deg, #d9bdff, #a679e8 58%, #8a5ac9);
-  color: #140b22;
-  box-shadow: 0 0 36px rgba(150, 105, 220, 0.24);
+  background: linear-gradient(120deg, #c8c8c8, #8b8b8b 58%, #6c6c6c);
+  color: #0f0f0f;
+  box-shadow: 0 0 36px rgba(123, 123, 123, 0.24);
 }
 
 .button.primary span {
-  color: #321d4f;
+  color: #252525;
   font-size: 15px;
 }
 
 .button.ghost {
-  background: rgba(4, 9, 20, 0.44);
+  background: rgba(9, 9, 9, 0.44);
 }
 
 .button:hover {
   transform: translateY(-2px);
-  border-color: rgba(226, 205, 255, 0.72);
+  border-color: rgba(213, 213, 213, 0.72);
 }
 
 .button.primary:hover {
-  box-shadow: 0 0 54px rgba(170, 125, 240, 0.38);
+  box-shadow: 0 0 54px rgba(143, 143, 143, 0.38);
 }
 
 .text-link {
@@ -428,7 +428,7 @@ a:focus-visible {
   padding: 0;
   border: 0;
   background: none;
-  color: #d3c2eb;
+  color: #c9c9c9;
   font-size: 11px;
   letter-spacing: 0.11em;
   text-decoration: none;
@@ -438,7 +438,7 @@ a:focus-visible {
 }
 
 .text-link:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .text-link span {
@@ -471,8 +471,8 @@ a:focus-visible {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(34, 74, 160, 0.11), transparent 52%),
-    radial-gradient(circle at 50% 50%, transparent 58%, rgba(80, 130, 215, 0.05) 59%, transparent 60%);
+    radial-gradient(circle, rgba(72, 72, 72, 0.11), transparent 52%),
+    radial-gradient(circle at 50% 50%, transparent 58%, rgba(126, 126, 126, 0.05) 59%, transparent 60%);
   filter: blur(2px);
   pointer-events: none;
 }
@@ -502,13 +502,13 @@ a:focus-visible {
 .title-letter {
   position: relative;
   display: inline-block;
-  background: linear-gradient(180deg, #fff 8%, #f1e7ff 46%, #bda2ef 100%);
+  background: linear-gradient(180deg, #ffffff 8%, #ebebeb 46%, #adadad 100%);
   background-size: 220% 100%;
   background-position: 50% 0;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 34px rgba(147, 106, 230, 0.32));
+  filter: drop-shadow(0 0 34px rgba(124, 124, 124, 0.32));
   opacity: 0;
   transform-origin: 50% 100%;
   /* Hover motion uses the individual translate/scale properties so it
@@ -584,10 +584,10 @@ a:focus-visible {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
   box-shadow:
     0 0 5px 1px rgba(255, 255, 255, 0.9),
-    0 0 15px 4px rgba(173, 134, 244, 0.32);
+    0 0 15px 4px rgba(150, 150, 150, 0.32);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.3);
   pointer-events: none;
@@ -662,11 +662,11 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
   box-shadow:
     0 0 8px 2px rgba(255, 255, 255, 0.95),
-    0 0 24px 8px rgba(205, 172, 255, 0.7),
-    0 0 58px 18px rgba(157, 110, 235, 0.34);
+    0 0 24px 8px rgba(185, 185, 185, 0.7),
+    0 0 58px 18px rgba(129, 129, 129, 0.34);
 }
 
 .title-star-tail {
@@ -678,7 +678,7 @@ a:focus-visible {
   transform: translateY(-50%);
   transform-origin: 100% 50%;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(234, 220, 255, 0.92));
+  background: linear-gradient(90deg, transparent, rgba(226, 226, 226, 0.92));
   filter: blur(0.3px);
   opacity: 0;
 }
@@ -690,7 +690,7 @@ a:focus-visible {
 .title-star-burst {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(233, 220, 255, 0.85);
+  border: 1px solid rgba(225, 225, 225, 0.85);
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.2);
@@ -703,7 +703,7 @@ a:focus-visible {
 
 .hero-kicker {
   margin: 20px 0 0;
-  color: #bcadd5;
+  color: #b3b3b3;
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -757,7 +757,7 @@ a:focus-visible {
 }
 
 .hero-meta strong {
-  color: #f1e7ff;
+  color: #ebebeb;
   font-family: var(--serif);
   font-size: clamp(26px, 3vw, 38px);
   font-weight: 300;
@@ -765,7 +765,7 @@ a:focus-visible {
 }
 
 .hero-meta span {
-  color: #8f859f;
+  color: #898989;
   font-size: 8px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -779,7 +779,7 @@ a:focus-visible {
   align-items: center;
   gap: 10px;
   transform: translateX(-50%);
-  color: #80768f;
+  color: #7a7a7a;
   font-size: 8px;
   letter-spacing: 0.18em;
   text-decoration: none;
@@ -792,7 +792,7 @@ a:focus-visible {
   width: 1px;
   height: 28px;
   overflow: hidden;
-  background: rgba(198, 172, 250, 0.16);
+  background: rgba(183, 183, 183, 0.16);
 }
 
 .scroll-cue span::after {
@@ -820,8 +820,8 @@ a:focus-visible {
   border: 1px solid var(--line);
   border-radius: 4px;
   background:
-    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(80, 49, 130, 0.18), transparent 65%),
-    linear-gradient(150deg, rgba(4, 8, 17, 0.8), rgba(2, 4, 9, 0.82));
+    radial-gradient(ellipse 60% 55% at 50% 42%, rgba(61, 61, 61, 0.18), transparent 65%),
+    linear-gradient(150deg, rgba(8, 8, 8, 0.8), rgba(4, 4, 4, 0.82));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.035),
     0 40px 140px rgba(0, 0, 0, 0.45);
@@ -830,7 +830,7 @@ a:focus-visible {
 .orrery-shell::before {
   position: absolute;
   inset: 8px;
-  border: 1px solid rgba(203, 177, 250, 0.045);
+  border: 1px solid rgba(188, 188, 188, 0.045);
   border-radius: 2px;
   content: "";
   pointer-events: none;
@@ -851,7 +851,7 @@ a:focus-visible {
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #b7abcd;
+  color: #b0b0b0;
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -861,19 +861,19 @@ a:focus-visible {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #91f2c4;
-  box-shadow: 0 0 10px rgba(145, 242, 196, 0.75);
+  background: #dadada;
+  box-shadow: 0 0 10px rgba(218, 218, 218, 0.75);
   animation: sim-pulse 2s ease-in-out infinite;
 }
 
 .sim-clock.is-paused .sim-pulse {
-  background: #f0c98c;
-  box-shadow: 0 0 10px rgba(240, 201, 140, 0.7);
+  background: #cdcdcd;
+  box-shadow: 0 0 10px rgba(205, 205, 205, 0.7);
   animation: none;
 }
 
 .sim-time {
-  color: #e8def7;
+  color: #e2e2e2;
   font-weight: 500;
   letter-spacing: 0.14em;
 }
@@ -881,7 +881,7 @@ a:focus-visible {
 .sim-epoch {
   padding-left: 9px;
   border-left: 1px solid var(--line);
-  color: #776e87;
+  color: #727272;
   font-size: 8px;
 }
 
@@ -898,10 +898,10 @@ a:focus-visible {
   align-items: center;
   gap: 6px;
   padding: 0 10px;
-  border: 1px solid rgba(208, 182, 255, 0.16);
+  border: 1px solid rgba(193, 193, 193, 0.16);
   border-radius: 999px;
-  background: rgba(5, 12, 26, 0.55);
-  color: #b8accd;
+  background: rgba(12, 12, 12, 0.55);
+  color: #b1b1b1;
   font-size: 8px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -919,8 +919,8 @@ a:focus-visible {
 }
 
 .control-button:hover {
-  border-color: rgba(219, 195, 255, 0.42);
-  color: #f0e9fb;
+  border-color: rgba(204, 204, 204, 0.42);
+  color: #ececec;
 }
 
 .play-button {
@@ -933,9 +933,9 @@ a:focus-visible {
   align-items: center;
   gap: 2px;
   padding: 2px;
-  border: 1px solid rgba(208, 182, 255, 0.14);
+  border: 1px solid rgba(193, 193, 193, 0.14);
   border-radius: 999px;
-  background: rgba(4, 8, 17, 0.6);
+  background: rgba(8, 8, 8, 0.6);
 }
 
 .speed-button {
@@ -945,7 +945,7 @@ a:focus-visible {
   border: 0;
   border-radius: 999px;
   background: transparent;
-  color: #7f758f;
+  color: #797979;
   font-size: 8px;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -955,13 +955,13 @@ a:focus-visible {
 }
 
 .speed-button:hover {
-  color: #e5d9f7;
+  color: #dedede;
 }
 
 .speed-button.active {
-  background: rgba(181, 140, 255, 0.18);
-  color: #f1e7ff;
-  box-shadow: inset 0 0 0 1px rgba(214, 190, 255, 0.16);
+  background: rgba(157, 157, 157, 0.18);
+  color: #ebebeb;
+  box-shadow: inset 0 0 0 1px rgba(200, 200, 200, 0.16);
 }
 
 .control-word {
@@ -976,12 +976,12 @@ a:focus-visible {
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   overflow: hidden;
-  border: 1px solid rgba(204, 178, 255, 0.08);
+  border: 1px solid rgba(189, 189, 189, 0.08);
   border-radius: 4px;
   background:
-    radial-gradient(ellipse 62% 58% at 50% 48%, rgba(72, 45, 118, 0.2), transparent 72%),
-    radial-gradient(ellipse 30% 26% at 50% 49%, rgba(255, 176, 84, 0.055), transparent 70%),
-    #030812;
+    radial-gradient(ellipse 62% 58% at 50% 48%, rgba(56, 56, 56, 0.2), transparent 72%),
+    radial-gradient(ellipse 30% 26% at 50% 49%, rgba(186, 186, 186, 0.055), transparent 70%),
+    #080808;
   cursor: grab;
   touch-action: pan-y;
 }
@@ -993,7 +993,7 @@ a:focus-visible {
   background: radial-gradient(
     ellipse 82% 80% at 50% 48%,
     transparent 66%,
-    rgba(1, 3, 6, 0.28) 100%
+    rgba(3, 3, 3, 0.28) 100%
   );
   content: "";
   pointer-events: none;
@@ -1027,7 +1027,7 @@ a:focus-visible {
   padding: 5px 6px;
   border: 0;
   background: transparent;
-  color: #c9badb;
+  color: #c0c0c0;
   font-family: var(--sans);
   font-size: 9px;
   font-weight: 500;
@@ -1050,19 +1050,19 @@ a:focus-visible {
   height: 4px;
   flex: none;
   border-radius: 50%;
-  background: var(--label-accent, #b6aac8);
-  box-shadow: 0 0 7px var(--label-accent, #b6aac8);
+  background: var(--label-accent, #afafaf);
+  box-shadow: 0 0 7px var(--label-accent, #afafaf);
 }
 
 .orrery-label:hover,
 .orrery-label.is-hover,
 .orrery-label.is-selected {
-  color: #fbf7ff;
+  color: #f8f8f8;
   opacity: 1;
 }
 
 .orrery-label:focus-visible {
-  outline: 1px solid rgba(223, 199, 255, 0.6);
+  outline: 1px solid rgba(208, 208, 208, 0.6);
   outline-offset: 2px;
 }
 
@@ -1073,7 +1073,7 @@ a:focus-visible {
 }
 
 .orrery-label-sun {
-  color: #d7ab70;
+  color: #b0b0b0;
   font-size: 8px;
   letter-spacing: 0.24em;
   opacity: 0.8;
@@ -1082,8 +1082,8 @@ a:focus-visible {
 }
 
 .orrery-label-sun .orrery-label-dot {
-  background: #ffbd69;
-  box-shadow: 0 0 9px rgba(255, 172, 82, 0.9);
+  background: #c5c5c5;
+  box-shadow: 0 0 9px rgba(183, 183, 183, 0.9);
 }
 
 .stage-hint {
@@ -1093,8 +1093,8 @@ a:focus-visible {
   left: 14px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(3, 6, 12, 0.58);
-  color: #8a7e9e;
+  background: rgba(6, 6, 6, 0.58);
+  color: #838383;
   font-size: 8px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1110,8 +1110,8 @@ a:focus-visible {
   align-content: center;
   justify-items: center;
   gap: 14px;
-  background: #030812;
-  color: #9a8fae;
+  background: #080808;
+  color: #949494;
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1122,10 +1122,10 @@ a:focus-visible {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
   box-shadow:
-    0 0 12px 4px rgba(206, 168, 255, 0.7),
-    0 0 44px 14px rgba(140, 92, 220, 0.35);
+    0 0 12px 4px rgba(182, 182, 182, 0.7),
+    0 0 44px 14px rgba(111, 111, 111, 0.35);
   animation: star-twinkle 1.8s ease-in-out infinite;
 }
 
@@ -1149,8 +1149,8 @@ a:focus-visible {
   padding: 16px 18px 17px;
   border-radius: 3px;
   background:
-    radial-gradient(ellipse 60% 120% at 8% 0%, rgba(84, 122, 106, 0.12), transparent 66%),
-    rgba(4, 10, 21, 0.6);
+    radial-gradient(ellipse 60% 120% at 8% 0%, rgba(113, 113, 113, 0.12), transparent 66%),
+    rgba(10, 10, 10, 0.6);
 }
 
 .earth-live-head {
@@ -1166,7 +1166,7 @@ a:focus-visible {
   align-items: center;
   gap: 8px;
   margin: 0;
-  color: #b9e8d2;
+  color: #dcdcdc;
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.17em;
@@ -1175,7 +1175,7 @@ a:focus-visible {
 
 .earth-live-date {
   margin: 0;
-  color: #8c829e;
+  color: #868686;
   font-size: 9px;
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
@@ -1186,8 +1186,8 @@ a:focus-visible {
   height: 5px;
   flex: none;
   border-radius: 50%;
-  background: #91f2c4;
-  box-shadow: 0 0 9px rgba(145, 242, 196, 0.85);
+  background: #dadada;
+  box-shadow: 0 0 9px rgba(218, 218, 218, 0.85);
   animation: sim-pulse 2s ease-in-out infinite;
 }
 
@@ -1197,14 +1197,14 @@ a:focus-visible {
   margin: 13px 0 15px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(208, 190, 240, 0.09);
+  background: rgba(197, 197, 197, 0.09);
 }
 
 .earth-live-fill {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(90deg, #5e9b86, #b6d9c6 55%, #e8d7ff);
+  background: linear-gradient(90deg, #8d8d8d, #d0d0d0 55%, #dedede);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 600ms linear;
@@ -1217,8 +1217,8 @@ a:focus-visible {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #f4ecff;
-  box-shadow: 0 0 10px 2px rgba(197, 167, 255, 0.6);
+  background: #efefef;
+  box-shadow: 0 0 10px 2px rgba(180, 180, 180, 0.6);
   transform: translate(-50%, -50%);
   transition: left 600ms linear;
 }
@@ -1232,7 +1232,7 @@ a:focus-visible {
 
 .earth-live-stats dt {
   margin: 0 0 3px;
-  color: #6f6680;
+  color: #6a6a6a;
   font-size: 7.5px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1240,7 +1240,7 @@ a:focus-visible {
 
 .earth-live-stats dd {
   margin: 0;
-  color: #e9e1f6;
+  color: #e4e4e4;
   font-family: var(--display);
   font-size: 16px;
   letter-spacing: 0.01em;
@@ -1250,23 +1250,23 @@ a:focus-visible {
 .earth-live-note {
   max-width: 78ch;
   margin: 13px 0 0;
-  color: #756b85;
+  color: #6f6f6f;
   font-size: 9px;
   line-height: 1.8;
 }
 
 .earth-live-note strong {
-  color: #b7a7d4;
+  color: #aeaeae;
   font-weight: 500;
 }
 
 .sim-clock.is-live .sim-pulse {
-  background: #91f2c4;
-  box-shadow: 0 0 10px rgba(145, 242, 196, 0.8);
+  background: #dadada;
+  box-shadow: 0 0 10px rgba(218, 218, 218, 0.8);
 }
 
 .sim-clock.is-live .sim-epoch {
-  color: #8fc8b1;
+  color: #bababa;
 }
 
 .live-button {
@@ -1274,9 +1274,9 @@ a:focus-visible {
 }
 
 .live-button.is-live {
-  border-color: rgba(145, 242, 196, 0.45);
-  background: rgba(38, 82, 66, 0.26);
-  color: #d8ffef;
+  border-color: rgba(218, 218, 218, 0.45);
+  background: rgba(71, 71, 71, 0.26);
+  color: #f6f6f6;
 }
 
 .live-button.is-live .live-dot {
@@ -1296,7 +1296,7 @@ a:focus-visible {
 .orbit-caption {
   max-width: 620px;
   margin: 0;
-  color: #81778f;
+  color: #7b7b7b;
   font-size: 9px;
   line-height: 1.8;
   text-align: center;
@@ -1314,10 +1314,10 @@ a:focus-visible {
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border: 1px solid rgba(207, 181, 255, 0.13);
+  border: 1px solid rgba(192, 192, 192, 0.13);
   border-radius: 999px;
-  background: rgba(4, 10, 22, 0.48);
-  color: #9e93b1;
+  background: rgba(10, 10, 10, 0.48);
+  color: #989898;
   font-size: 8px;
   letter-spacing: 0.07em;
   cursor: pointer;
@@ -1329,9 +1329,9 @@ a:focus-visible {
 
 .picker-button:hover,
 .picker-button.active {
-  border-color: rgba(213, 187, 255, 0.45);
-  background: rgba(157, 116, 215, 0.13);
-  color: #f2eaff;
+  border-color: rgba(197, 197, 197, 0.45);
+  background: rgba(132, 132, 132, 0.13);
+  color: #ededed;
 }
 
 .picker-dot {
@@ -1344,7 +1344,7 @@ a:focus-visible {
 .data-note {
   max-width: 720px;
   margin: 26px auto 0;
-  color: #756b83;
+  color: #6f6f6f;
   font-size: 9px;
   line-height: 1.8;
   text-align: center;
@@ -1366,8 +1366,8 @@ a:focus-visible {
   border: 1px solid var(--line);
   border-radius: 4px;
   background:
-    radial-gradient(ellipse 54% 62% at 20% 46%, rgba(98, 59, 158, 0.19), transparent 66%),
-    linear-gradient(145deg, rgba(4, 10, 21, 0.86), rgba(2, 5, 10, 0.84));
+    radial-gradient(ellipse 54% 62% at 20% 46%, rgba(74, 74, 74, 0.19), transparent 66%),
+    linear-gradient(145deg, rgba(10, 10, 10, 0.86), rgba(5, 5, 5, 0.84));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.035),
     0 30px 110px rgba(0, 0, 0, 0.28);
@@ -1378,7 +1378,7 @@ a:focus-visible {
   position: absolute;
   top: -20%;
   right: -10%;
-  color: rgba(193, 166, 240, 0.032);
+  color: rgba(177, 177, 177, 0.032);
   font-family: var(--serif);
   font-size: clamp(210px, 30vw, 420px);
   line-height: 1;
@@ -1402,17 +1402,17 @@ a:focus-visible {
   z-index: -1;
   width: min(110%, 390px);
   aspect-ratio: 1;
-  border: 1px solid rgba(207, 182, 252, 0.1);
+  border: 1px solid rgba(192, 192, 192, 0.1);
   border-radius: 50%;
-  box-shadow: inset 0 0 50px rgba(120, 80, 180, 0.05);
+  box-shadow: inset 0 0 50px rgba(96, 96, 96, 0.05);
 }
 
 .detail-orbit::before,
 .detail-orbit::after {
   position: absolute;
   border-radius: 50%;
-  background: #d4bcff;
-  box-shadow: 0 0 10px rgba(196, 165, 255, 0.8);
+  background: #c6c6c6;
+  box-shadow: 0 0 10px rgba(178, 178, 178, 0.8);
   content: "";
 }
 
@@ -1433,7 +1433,7 @@ a:focus-visible {
 
 .visual-caption {
   margin: 0;
-  color: #7f758e;
+  color: #797979;
   font-size: 8px;
   letter-spacing: 0.06em;
   line-height: 1.8;
@@ -1543,16 +1543,16 @@ a:focus-visible {
     radial-gradient(
       circle at 50% 50%,
       transparent 0 47%,
-      rgba(176, 159, 131, 0.12) 48% 52%,
-      rgba(219, 198, 160, 0.4) 53% 61%,
-      rgba(248, 234, 202, 0.8) 62% 72%,
-      rgba(238, 222, 188, 0.66) 73% 77%,
-      rgba(146, 131, 108, 0.12) 78% 80%,
-      rgba(232, 214, 177, 0.58) 81% 90%,
-      rgba(153, 139, 117, 0.12) 91% 92.5%,
+      rgba(161, 161, 161, 0.12) 48% 52%,
+      rgba(200, 200, 200, 0.4) 53% 61%,
+      rgba(235, 235, 235, 0.8) 62% 72%,
+      rgba(223, 223, 223, 0.66) 73% 77%,
+      rgba(133, 133, 133, 0.12) 78% 80%,
+      rgba(215, 215, 215, 0.58) 81% 90%,
+      rgba(140, 140, 140, 0.12) 91% 92.5%,
       transparent 94% 100%
     );
-  filter: drop-shadow(0 0 6px rgba(236, 214, 166, 0.16));
+  filter: drop-shadow(0 0 6px rgba(215, 215, 215, 0.16));
   opacity: 0.92;
   pointer-events: none;
 }
@@ -1576,9 +1576,9 @@ a:focus-visible {
   transform: translate(-50%, -50%) rotate(84deg) scaleY(0.18);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, transparent 0 47%, rgba(170, 225, 228, 0.26) 48% 49.4%, transparent 50% 53%),
-    radial-gradient(circle at 50% 50%, transparent 0 57%, rgba(170, 225, 228, 0.18) 58% 59.4%, transparent 60% 63%),
-    radial-gradient(circle at 50% 50%, transparent 0 68%, rgba(170, 225, 228, 0.2) 69% 70.4%, transparent 71% 100%);
+    radial-gradient(circle at 50% 50%, transparent 0 47%, rgba(214, 214, 214, 0.26) 48% 49.4%, transparent 50% 53%),
+    radial-gradient(circle at 50% 50%, transparent 0 57%, rgba(214, 214, 214, 0.18) 58% 59.4%, transparent 60% 63%),
+    radial-gradient(circle at 50% 50%, transparent 0 68%, rgba(214, 214, 214, 0.2) 69% 70.4%, transparent 71% 100%);
   opacity: 0.48;
   pointer-events: none;
 }
@@ -1599,7 +1599,7 @@ a:focus-visible {
   gap: 12px;
   padding-bottom: 13px;
   border-bottom: 1px solid var(--line);
-  color: #9388a6;
+  color: #8d8d8d;
   font-size: 8px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -1612,7 +1612,7 @@ a:focus-visible {
 
 .detail-title {
   margin: 18px 0 0;
-  color: #f5efff;
+  color: #f1f1f1;
   font-family: var(--serif);
   font-size: clamp(48px, 6vw, 76px);
   font-weight: 300;
@@ -1622,7 +1622,7 @@ a:focus-visible {
 
 .detail-tagline {
   margin: 10px 0 0;
-  color: #cdc0e2;
+  color: #c5c5c5;
   font-family: var(--serif);
   font-size: clamp(18px, 2.2vw, 24px);
   font-style: italic;
@@ -1633,7 +1633,7 @@ a:focus-visible {
 .detail-description {
   max-width: 640px;
   margin: 17px 0 0;
-  color: #a9a0b9;
+  color: #a4a4a4;
   font-size: 13px;
   line-height: 1.9;
 }
@@ -1641,8 +1641,8 @@ a:focus-visible {
 .detail-highlight {
   margin: 18px 0 0;
   padding-left: 15px;
-  border-left: 1px solid rgba(181, 140, 255, 0.55);
-  color: #e2d6f4;
+  border-left: 1px solid rgba(157, 157, 157, 0.55);
+  color: #dbdbdb;
   font-size: 11px;
   line-height: 1.7;
 }
@@ -1664,7 +1664,7 @@ a:focus-visible {
 .fact {
   min-width: 0;
   padding: 12px 13px;
-  background: rgba(2, 5, 11, 0.8);
+  background: rgba(5, 5, 5, 0.8);
 }
 
 .fact-wide {
@@ -1673,7 +1673,7 @@ a:focus-visible {
 
 .fact span {
   display: block;
-  color: #8b7f99;
+  color: #838383;
   font-size: 8px;
   letter-spacing: 0.13em;
   line-height: 1.5;
@@ -1683,7 +1683,7 @@ a:focus-visible {
 .fact strong {
   display: block;
   margin-top: 4px;
-  color: #e8dff4;
+  color: #e2e2e2;
   font-size: 11.5px;
   font-weight: 500;
   line-height: 1.5;
@@ -1692,8 +1692,8 @@ a:focus-visible {
 .detail-focus {
   margin-top: 22px;
   padding: 15px 17px;
-  border: 1px solid rgba(205, 180, 255, 0.09);
-  background: rgba(126, 85, 190, 0.06);
+  border: 1px solid rgba(191, 191, 191, 0.09);
+  background: rgba(101, 101, 101, 0.06);
 }
 
 .focus-label {
@@ -1708,7 +1708,7 @@ a:focus-visible {
 
 .detail-focus p {
   margin: 0;
-  color: #a9a0b8;
+  color: #a4a4a4;
   font-size: 10.5px;
   line-height: 1.8;
 }
@@ -1727,7 +1727,7 @@ a:focus-visible {
   padding: 7px 0;
   border: 0;
   background: none;
-  color: #9d92b0;
+  color: #979797;
   font-size: 8px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -1736,7 +1736,7 @@ a:focus-visible {
 }
 
 .detail-nav-button:hover {
-  color: #f4edff;
+  color: #f0f0f0;
 }
 
 .detail-nav-button span {
@@ -1753,10 +1753,10 @@ a:focus-visible {
 /* ------------------------------------------------------------------ */
 
 .scale-section {
-  border-top: 1px solid rgba(205, 180, 255, 0.07);
-  border-bottom: 1px solid rgba(205, 180, 255, 0.07);
+  border-top: 1px solid rgba(191, 191, 191, 0.07);
+  border-bottom: 1px solid rgba(191, 191, 191, 0.07);
   background:
-    radial-gradient(ellipse 50% 48% at 50% 50%, rgba(68, 42, 110, 0.1), transparent 70%);
+    radial-gradient(ellipse 50% 48% at 50% 50%, rgba(52, 52, 52, 0.1), transparent 70%);
 }
 
 .scale-list {
@@ -1786,7 +1786,7 @@ a:focus-visible {
 
 .scale-copy h3 {
   margin: 4px 0 2px;
-  color: #e6ddf3;
+  color: #e1e1e1;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -1794,7 +1794,7 @@ a:focus-visible {
 
 .scale-copy p {
   margin: 0;
-  color: #857a94;
+  color: #7e7e7e;
   font-size: 9px;
   line-height: 1.6;
 }
@@ -1802,7 +1802,7 @@ a:focus-visible {
 .scale-bar {
   position: relative;
   height: 1px;
-  background: rgba(194, 168, 240, 0.11);
+  background: rgba(179, 179, 179, 0.11);
 }
 
 .scale-bar span {
@@ -1811,8 +1811,8 @@ a:focus-visible {
   left: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, rgba(181, 140, 255, 0.12), var(--violet), #e8d3ff);
-  box-shadow: 0 0 12px rgba(181, 140, 255, 0.35);
+  background: linear-gradient(90deg, rgba(157, 157, 157, 0.12), var(--violet), #dbdbdb);
+  box-shadow: 0 0 12px rgba(157, 157, 157, 0.35);
   transition: width 1.5s cubic-bezier(0.2, 0.7, 0.2, 1) 120ms;
 }
 
@@ -1824,8 +1824,8 @@ a:focus-visible {
   height: 4px;
   transform: translateY(-50%);
   border-radius: 50%;
-  background: #f0e3ff;
-  box-shadow: 0 0 10px rgba(219, 193, 255, 0.9);
+  background: #e8e8e8;
+  box-shadow: 0 0 10px rgba(203, 203, 203, 0.9);
   content: "";
 }
 
@@ -1839,7 +1839,7 @@ a:focus-visible {
   align-items: flex-start;
   gap: 10px;
   margin: 30px auto 0;
-  color: #8d829c;
+  color: #868686;
   font-size: 9.5px;
   line-height: 1.8;
   text-align: left;
@@ -1867,8 +1867,8 @@ a:focus-visible {
   padding: 30px 26px 26px;
   border: 1px solid var(--line);
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(111, 71, 171, 0.13), transparent 70%),
-    linear-gradient(160deg, rgba(5, 10, 23, 0.68), rgba(2, 5, 10, 0.72));
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(87, 87, 87, 0.13), transparent 70%),
+    linear-gradient(160deg, rgba(10, 10, 10, 0.68), rgba(5, 5, 5, 0.72));
   transition:
     transform 260ms ease,
     border-color 260ms ease,
@@ -1879,7 +1879,7 @@ a:focus-visible {
   position: absolute;
   right: -30px;
   bottom: -42px;
-  color: rgba(196, 166, 242, 0.035);
+  color: rgba(178, 178, 178, 0.035);
   font-family: var(--serif);
   font-size: 160px;
   line-height: 1;
@@ -1889,15 +1889,15 @@ a:focus-visible {
 
 .science-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(210, 183, 255, 0.3);
+  border-color: rgba(194, 194, 194, 0.3);
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(126, 82, 190, 0.18), transparent 70%),
-    linear-gradient(160deg, rgba(5, 12, 27, 0.8), rgba(2, 5, 12, 0.8));
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(99, 99, 99, 0.18), transparent 70%),
+    linear-gradient(160deg, rgba(12, 12, 12, 0.8), rgba(5, 5, 5, 0.8));
 }
 
 .science-index {
   display: block;
-  color: rgba(189, 155, 243, 0.38);
+  color: rgba(169, 169, 169, 0.38);
   font-family: var(--serif);
   font-size: 38px;
   font-weight: 300;
@@ -1915,7 +1915,7 @@ a:focus-visible {
 
 .science-card h3 {
   margin: 0;
-  color: #f0e8fc;
+  color: #ebebeb;
   font-family: var(--serif);
   font-size: clamp(29px, 3vw, 37px);
   font-weight: 300;
@@ -1925,7 +1925,7 @@ a:focus-visible {
 
 .science-text {
   margin: 13px 0 0;
-  color: #a39aaf;
+  color: #9d9d9d;
   font-size: 11px;
   line-height: 1.85;
 }
@@ -1942,7 +1942,7 @@ a:focus-visible {
 .science-card li {
   position: relative;
   padding-left: 14px;
-  color: #b8afc7;
+  color: #b3b3b3;
   font-size: 10px;
   line-height: 1.7;
 }
@@ -1958,7 +1958,7 @@ a:focus-visible {
 
 .science-question {
   margin: 20px 0 0;
-  color: #cfc0e5;
+  color: #c6c6c6;
   font-family: var(--serif);
   font-size: 15px;
   font-style: italic;
@@ -1978,8 +1978,8 @@ a:focus-visible {
   gap: 16px;
   margin: 24px auto 0;
   padding: 18px 22px;
-  border: 1px solid rgba(205, 180, 255, 0.08);
-  background: rgba(3, 6, 14, 0.4);
+  border: 1px solid rgba(191, 191, 191, 0.08);
+  background: rgba(6, 6, 6, 0.4);
 }
 
 .note-mark {
@@ -1991,13 +1991,13 @@ a:focus-visible {
 
 .science-note p {
   margin: 0;
-  color: #92889f;
+  color: #8c8c8c;
   font-size: 10px;
   line-height: 1.85;
 }
 
 .science-note strong {
-  color: #e3d8f2;
+  color: #dcdcdc;
   font-weight: 500;
 }
 
@@ -2006,18 +2006,18 @@ a:focus-visible {
 /* ------------------------------------------------------------------ */
 
 .cosmology-section {
-  border-top: 1px solid rgba(205, 180, 255, 0.06);
-  border-bottom: 1px solid rgba(205, 180, 255, 0.06);
+  border-top: 1px solid rgba(191, 191, 191, 0.06);
+  border-bottom: 1px solid rgba(191, 191, 191, 0.06);
   background:
-    radial-gradient(ellipse 55% 42% at 50% 0%, rgba(84, 50, 133, 0.15), transparent 70%),
-    linear-gradient(180deg, rgba(2, 5, 10, 0.15), rgba(3, 6, 13, 0.42) 50%, rgba(2, 5, 10, 0.15));
+    radial-gradient(ellipse 55% 42% at 50% 0%, rgba(63, 63, 63, 0.15), transparent 70%),
+    linear-gradient(180deg, rgba(5, 5, 5, 0.15), rgba(6, 6, 6, 0.42) 50%, rgba(5, 5, 5, 0.15));
 }
 
 .timeline {
   max-width: 900px;
   margin: 0 auto clamp(56px, 7vw, 88px);
   padding-left: 24px;
-  border-left: 1px solid rgba(204, 178, 250, 0.16);
+  border-left: 1px solid rgba(189, 189, 189, 0.16);
 }
 
 .timeline-item {
@@ -2038,12 +2038,12 @@ a:focus-visible {
   left: -29px;
   width: 9px;
   height: 9px;
-  border: 1px solid rgba(226, 205, 255, 0.7);
+  border: 1px solid rgba(213, 213, 213, 0.7);
   border-radius: 50%;
-  background: #050c1a;
+  background: #0c0c0c;
   box-shadow:
-    0 0 0 4px rgba(181, 140, 255, 0.08),
-    0 0 14px rgba(181, 140, 255, 0.4);
+    0 0 0 4px rgba(157, 157, 157, 0.08),
+    0 0 14px rgba(157, 157, 157, 0.4);
 }
 
 .timeline-when time {
@@ -2056,7 +2056,7 @@ a:focus-visible {
 
 .timeline-what h3 {
   margin: 0 0 5px;
-  color: #ece2fa;
+  color: #e6e6e6;
   font-family: var(--serif);
   font-size: 25px;
   font-weight: 400;
@@ -2067,7 +2067,7 @@ a:focus-visible {
 .timeline-what p {
   max-width: 610px;
   margin: 0;
-  color: #968ca4;
+  color: #909090;
   font-size: 11px;
   line-height: 1.85;
 }
@@ -2082,7 +2082,7 @@ a:focus-visible {
   min-height: 218px;
   padding: 24px 21px;
   border: 1px solid var(--line);
-  background: rgba(3, 6, 14, 0.58);
+  background: rgba(6, 6, 6, 0.58);
   transition:
     transform 240ms ease,
     border-color 240ms ease,
@@ -2091,19 +2091,19 @@ a:focus-visible {
 
 .cosmo-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(209, 182, 255, 0.3);
-  background: rgba(4, 10, 22, 0.7);
+  border-color: rgba(193, 193, 193, 0.3);
+  background: rgba(10, 10, 10, 0.7);
 }
 
 .cosmo-number {
-  color: rgba(181, 140, 255, 0.52);
+  color: rgba(157, 157, 157, 0.52);
   font-size: 8px;
   letter-spacing: 0.18em;
 }
 
 .cosmo-card h3 {
   margin: 26px 0 9px;
-  color: #e9e0f7;
+  color: #e4e4e4;
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 400;
@@ -2113,7 +2113,7 @@ a:focus-visible {
 
 .cosmo-card p {
   margin: 0;
-  color: #9a91a8;
+  color: #959595;
   font-size: 10px;
   line-height: 1.85;
 }
@@ -2127,8 +2127,8 @@ a:focus-visible {
   padding: clamp(26px, 3.6vw, 42px);
   border: 1px solid var(--line);
   background:
-    radial-gradient(ellipse 50% 80% at 12% 50%, rgba(93, 55, 145, 0.18), transparent 70%),
-    rgba(2, 5, 12, 0.6);
+    radial-gradient(ellipse 50% 80% at 12% 50%, rgba(70, 70, 70, 0.18), transparent 70%),
+    rgba(5, 5, 5, 0.6);
 }
 
 .dark-copy .science-tag {
@@ -2137,7 +2137,7 @@ a:focus-visible {
 
 .dark-copy h3 {
   margin: 8px 0 10px;
-  color: #f1e9fb;
+  color: #ececec;
   font-family: var(--serif);
   font-size: clamp(28px, 3.4vw, 40px);
   font-weight: 300;
@@ -2148,7 +2148,7 @@ a:focus-visible {
 .dark-copy p:last-child {
   max-width: 480px;
   margin: 0;
-  color: #9e94ac;
+  color: #989898;
   font-size: 11px;
   line-height: 1.85;
 }
@@ -2175,15 +2175,15 @@ a:focus-visible {
 }
 
 .dark-bar .ordinary {
-  background: #f0c98c;
+  background: #cdcdcd;
 }
 
 .dark-bar .dark-matter {
-  background: linear-gradient(90deg, #8e6bc4, #b58cff);
+  background: linear-gradient(90deg, #797979, #9d9d9d);
 }
 
 .dark-bar .dark-energy {
-  background: linear-gradient(90deg, #4c3d94, #7562bd);
+  background: linear-gradient(90deg, #464646, #6d6d6d);
 }
 
 .dark-key {
@@ -2198,14 +2198,14 @@ a:focus-visible {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #a79db5;
+  color: #a1a1a1;
   font-size: 9px;
   letter-spacing: 0.03em;
 }
 
 .dark-key strong {
   min-width: 34px;
-  color: #e9def8;
+  color: #e2e2e2;
   font-size: 10px;
   font-weight: 500;
 }
@@ -2217,18 +2217,18 @@ a:focus-visible {
 }
 
 .key-dot.ordinary {
-  background: #f0c98c;
-  box-shadow: 0 0 8px rgba(240, 201, 140, 0.6);
+  background: #cdcdcd;
+  box-shadow: 0 0 8px rgba(205, 205, 205, 0.6);
 }
 
 .key-dot.matter {
-  background: #b58cff;
-  box-shadow: 0 0 8px rgba(181, 140, 255, 0.6);
+  background: #9d9d9d;
+  box-shadow: 0 0 8px rgba(157, 157, 157, 0.6);
 }
 
 .key-dot.energy {
-  background: #6753ad;
-  box-shadow: 0 0 8px rgba(103, 83, 173, 0.6);
+  background: #5e5e5e;
+  box-shadow: 0 0 8px rgba(94, 94, 94, 0.6);
 }
 
 /* ------------------------------------------------------------------ */
@@ -2249,8 +2249,8 @@ a:focus-visible {
   padding: 26px 23px 22px;
   border: 1px solid var(--line);
   background:
-    radial-gradient(ellipse 90% 55% at 10% 0%, rgba(97, 59, 150, 0.12), transparent 70%),
-    rgba(2, 5, 11, 0.58);
+    radial-gradient(ellipse 90% 55% at 10% 0%, rgba(74, 74, 74, 0.12), transparent 70%),
+    rgba(5, 5, 5, 0.58);
   transition:
     transform 240ms ease,
     border-color 240ms ease;
@@ -2258,7 +2258,7 @@ a:focus-visible {
 
 .wonder-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(208, 181, 255, 0.3);
+  border-color: rgba(192, 192, 192, 0.3);
 }
 
 .wonder-tag {
@@ -2272,7 +2272,7 @@ a:focus-visible {
 
 .wonder-card h3 {
   margin: 16px 0 9px;
-  color: #f0e8fb;
+  color: #ebebeb;
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 300;
@@ -2282,7 +2282,7 @@ a:focus-visible {
 
 .wonder-card > p:not(.wonder-tag) {
   margin: 0;
-  color: #9a90a8;
+  color: #949494;
   font-size: 10px;
   line-height: 1.85;
 }
@@ -2304,7 +2304,7 @@ a:focus-visible {
 }
 
 .wonder-stat span {
-  color: #776d86;
+  color: #717171;
   font-size: 7.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2329,7 +2329,7 @@ a:focus-visible {
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(110, 70, 170, 0.14), transparent 62%);
+  background: radial-gradient(circle, rgba(86, 86, 86, 0.14), transparent 62%);
   content: "";
   pointer-events: none;
 }
@@ -2341,13 +2341,13 @@ a:focus-visible {
 
 .closing-section h2 {
   margin: 0;
-  color: #f6f0ff;
+  color: #f2f2f2;
   font-family: var(--serif);
   font-size: clamp(54px, 9vw, 108px);
   font-weight: 300;
   letter-spacing: -0.045em;
   line-height: 0.98;
-  text-shadow: 0 0 60px rgba(151, 111, 230, 0.18);
+  text-shadow: 0 0 60px rgba(128, 128, 128, 0.18);
 }
 
 .closing-copy {
@@ -2365,11 +2365,11 @@ a:focus-visible {
   gap: 10px;
   margin: clamp(58px, 8vw, 88px) auto 0;
   padding-top: 28px;
-  border-top: 1px solid rgba(205, 180, 255, 0.11);
+  border-top: 1px solid rgba(191, 191, 191, 0.11);
 }
 
 .credits-label {
-  color: #6e647c;
+  color: #686868;
   font-size: 7.5px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -2382,7 +2382,7 @@ a:focus-visible {
   justify-content: center;
   gap: 8px 14px;
   margin: 0;
-  color: rgba(235, 226, 250, 0.38);
+  color: rgba(230, 230, 230, 0.38);
   font-family: var(--serif);
   font-size: clamp(25px, 3.4vw, 38px);
   font-weight: 300;
@@ -2392,7 +2392,7 @@ a:focus-visible {
 }
 
 .credit-names:hover {
-  color: rgba(240, 232, 255, 0.66);
+  color: rgba(235, 235, 235, 0.66);
 }
 
 .credit-names > span:not(.credit-and) {
@@ -2406,7 +2406,7 @@ a:focus-visible {
   left: 0;
   height: 1px;
   transform: scaleX(0);
-  background: rgba(219, 196, 255, 0.45);
+  background: rgba(205, 205, 205, 0.45);
   content: "";
   transition: transform 400ms ease;
 }
@@ -2416,7 +2416,7 @@ a:focus-visible {
 }
 
 .credit-and {
-  color: rgba(181, 140, 255, 0.3);
+  color: rgba(157, 157, 157, 0.3);
   font-family: var(--sans);
   font-size: 9px;
   font-style: normal;
@@ -2436,8 +2436,8 @@ a:focus-visible {
   flex-wrap: wrap;
   gap: 12px 26px;
   padding: 24px clamp(22px, 5vw, 74px);
-  border-top: 1px solid rgba(205, 180, 255, 0.09);
-  background: rgba(2, 4, 8, 0.52);
+  border-top: 1px solid rgba(191, 191, 191, 0.09);
+  background: rgba(4, 4, 4, 0.52);
 }
 
 .footer-wordmark {
@@ -2447,7 +2447,7 @@ a:focus-visible {
 .footer-line,
 .footer-sources {
   margin: 0;
-  color: #736a81;
+  color: #6e6e6e;
   font-size: 8.5px;
   letter-spacing: 0.04em;
 }
@@ -2460,11 +2460,11 @@ a:focus-visible {
 }
 
 .footer-divider {
-  color: rgba(181, 140, 255, 0.42);
+  color: rgba(157, 157, 157, 0.42);
 }
 
 .footer-credit {
-  color: rgba(220, 208, 240, 0.4);
+  color: rgba(213, 213, 213, 0.4);
 }
 
 .back-to-top {
@@ -2477,10 +2477,10 @@ a:focus-visible {
   height: 42px;
   place-items: center;
   transform: translateY(14px);
-  border: 1px solid rgba(212, 185, 255, 0.22);
+  border: 1px solid rgba(196, 196, 196, 0.22);
   border-radius: 50%;
-  background: rgba(3, 6, 14, 0.72);
-  color: #d8c8ee;
+  background: rgba(6, 6, 6, 0.72);
+  color: #cecece;
   font-size: 15px;
   opacity: 0;
   backdrop-filter: blur(12px);
@@ -2500,8 +2500,8 @@ a:focus-visible {
 }
 
 .back-to-top:hover {
-  border-color: rgba(226, 205, 255, 0.62);
-  background: rgba(5, 12, 27, 0.9);
+  border-color: rgba(213, 213, 213, 0.62);
+  background: rgba(12, 12, 12, 0.9);
 }
 
 /* ------------------------------------------------------------------ */
@@ -2544,20 +2544,20 @@ a:focus-visible {
   0% {
     opacity: 0;
     transform: perspective(700px) translateY(0.3em) rotateX(-52deg) scale(0.94);
-    filter: blur(16px) drop-shadow(0 0 0 rgba(147, 106, 230, 0));
+    filter: blur(16px) drop-shadow(0 0 0 rgba(124, 124, 124, 0));
   }
 
   55% {
     opacity: 1;
     transform: perspective(700px) translateY(-0.025em) rotateX(7deg)
       scale(1.015);
-    filter: blur(1.5px) drop-shadow(0 0 48px rgba(172, 132, 255, 0.55));
+    filter: blur(1.5px) drop-shadow(0 0 48px rgba(149, 149, 149, 0.55));
   }
 
   100% {
     opacity: 1;
     transform: perspective(700px) translateY(0) rotateX(0) scale(1);
-    filter: blur(0) drop-shadow(0 0 34px rgba(147, 106, 230, 0.32));
+    filter: blur(0) drop-shadow(0 0 34px rgba(124, 124, 124, 0.32));
   }
 }
 
@@ -2751,13 +2751,13 @@ a:focus-visible {
   100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    filter: drop-shadow(0 0 0 rgba(210, 180, 255, 0));
+    filter: drop-shadow(0 0 0 rgba(192, 192, 192, 0));
   }
 
   50% {
     transform: translate(-50%, -50%) scale(0.78);
     opacity: 0.72;
-    filter: drop-shadow(0 0 10px rgba(210, 180, 255, 0.8));
+    filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.8));
   }
 }
 
@@ -3280,4 +3280,178 @@ a:focus-visible {
   .orrery-stage {
     pointer-events: auto;
   }
+}
+
+
+/* ------------------------------------------------------------------ */
+/*  Monochrome black theme                                             */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --ink: #f5f5f5;
+  --soft: #cfcfcf;
+  --muted: #8f8f8f;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  --violet: #ffffff;
+  --violet-bright: #ffffff;
+  --gold: #d6d6d6;
+  --blue: #bdbdbd;
+  --panel: rgba(8, 8, 8, 0.82);
+}
+
+html {
+  scrollbar-color: #3a3a3a #000;
+}
+
+body {
+  background: #000;
+  font-weight: 400;
+  letter-spacing: -0.003em;
+}
+
+body::after,
+.nebula,
+.vignette,
+.hero-halo,
+.wordmark-star,
+.eyebrow-star,
+.title-star,
+.title-spark,
+.note-mark {
+  display: none;
+}
+
+.milky-band {
+  opacity: 0.06;
+  filter: grayscale(1) blur(0.4px);
+}
+
+::selection {
+  color: #000;
+  background: #fff;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Planet imagery stays strictly black-and-white */
+.planet-globe,
+.planet-ring,
+.uranus-rings,
+.orrery-canvas-mount canvas {
+  filter: grayscale(1) contrast(1.06);
+}
+
+/* Type: one clean family, tighter and calmer than the ornamental serif */
+h1,
+h2,
+h3,
+.hero-title,
+.detail-title,
+.wordmark,
+.footer-wordmark {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.wordmark,
+.footer-wordmark {
+  letter-spacing: 0.18em;
+  font-weight: 600;
+}
+
+.title-letter {
+  background: none;
+  color: #fff;
+  filter: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+/* Flat, high-contrast controls instead of glowing gradients */
+.button.primary,
+.header-cta {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  box-shadow: none;
+}
+
+.button.primary:hover,
+.header-cta:hover {
+  background: #d9d9d9;
+  color: #000;
+  box-shadow: none;
+}
+
+.button.ghost {
+  border-color: var(--line-strong);
+  background: transparent;
+}
+
+.button.ghost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.science-card,
+.cosmo-card,
+.wonder-card,
+.fact,
+.orrery-shell,
+.science-note,
+.planet-detail {
+  box-shadow: none;
+  border-color: var(--line);
+  background: #070707;
+}
+
+.science-card:hover,
+.cosmo-card:hover,
+.wonder-card:hover {
+  border-color: var(--line-strong);
+}
+
+.scroll-progress div {
+  background: #fff;
+  box-shadow: none;
+}
+
+.dark-bar .ordinary,
+.key-dot.ordinary {
+  background: #fff;
+}
+
+.dark-bar .dark-matter,
+.key-dot.matter {
+  background: #7a7a7a;
+}
+
+.dark-bar .dark-energy,
+.key-dot.energy {
+  background: #2b2b2b;
+}
+
+/* Refinements */
+.site-header {
+  background: rgba(0, 0, 0, 0.88);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.header-cta span {
+  color: #000;
+}
+
+.section-heading h2,
+.closing-section h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.12;
 }

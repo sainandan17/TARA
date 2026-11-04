@@ -235,7 +235,7 @@ export default function Orrery3D({
           new THREE.BufferAttribute(positions, 3),
         );
         const material = new THREE.PointsMaterial({
-          color: 0xb9c7ee,
+          color: 0xc7c7c7,
           size,
           sizeAttenuation: true,
           transparent: true,
@@ -260,15 +260,15 @@ export default function Orrery3D({
         side: THREE.BackSide,
         transparent: true,
         opacity: 0.42,
-        color: 0x9c94c4,
+        color: 0x999999,
         depthWrite: false,
       });
       disposables.push(galaxyGeometry, galaxyMaterial);
       scene.add(new THREE.Mesh(galaxyGeometry, galaxyMaterial));
 
       /* ---------------- light ---------------- */
-      scene.add(new THREE.AmbientLight(0xc9c3d8, 0.44));
-      const sunlight = new THREE.PointLight(0xfff0d6, 3.3, 0, 0);
+      scene.add(new THREE.AmbientLight(0xc6c6c6, 0.44));
+      const sunlight = new THREE.PointLight(0xf1f1f1, 3.3, 0, 0);
       scene.add(sunlight);
 
       /* ---------------- sun ---------------- */
@@ -287,7 +287,7 @@ export default function Orrery3D({
 
       /* limb glow — a thin fresnel shell around the photosphere */
       const limbMaterial = new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(0xffa24a) } },
+        uniforms: { uColor: { value: new THREE.Color(0xafafaf) } },
         vertexShader: `
           varying vec3 vNormal;
           varying vec3 vView;
@@ -393,10 +393,10 @@ export default function Orrery3D({
         const context = canvas.getContext("2d");
         if (context) {
           const gradient = context.createRadialGradient(128, 128, 0, 128, 128, 128);
-          gradient.addColorStop(0, "rgba(255, 236, 196, 0.95)");
-          gradient.addColorStop(0.18, "rgba(255, 190, 110, 0.55)");
-          gradient.addColorStop(0.45, "rgba(255, 138, 54, 0.18)");
-          gradient.addColorStop(1, "rgba(255, 110, 30, 0)");
+          gradient.addColorStop(0, "rgba(237, 237, 237, 0.95)");
+          gradient.addColorStop(0.18, "rgba(198, 198, 198, 0.55)");
+          gradient.addColorStop(0.45, "rgba(157, 157, 157, 0.18)");
+          gradient.addColorStop(1, "rgba(135, 135, 135, 0)");
           context.fillStyle = gradient;
           context.fillRect(0, 0, 256, 256);
         }
@@ -446,7 +446,7 @@ export default function Orrery3D({
         }
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         const material = new THREE.LineBasicMaterial({
-          color: 0xcbb9ef,
+          color: 0xc1c1c1,
           transparent: true,
           opacity: 0.34,
           depthWrite: false,
@@ -472,7 +472,7 @@ export default function Orrery3D({
       );
       arcGeometry.setDrawRange(0, arcSegments + 1);
       const arcMaterial = new THREE.LineBasicMaterial({
-        color: 0x8ef0c3,
+        color: 0xd8d8d8,
         transparent: true,
         opacity: 0.9,
         blending: THREE.AdditiveBlending,
@@ -556,15 +556,15 @@ export default function Orrery3D({
         canvas.height = 128;
         const context = canvas.getContext("2d");
         if (context) {
-          context.strokeStyle = "rgba(238, 228, 255, 0.95)";
+          context.strokeStyle = "rgba(232, 232, 232, 0.95)";
           context.lineWidth = 2.5;
           context.beginPath();
           context.arc(64, 64, 47, 0, Math.PI * 2);
           context.stroke();
           const gradient = context.createRadialGradient(64, 64, 38, 64, 64, 64);
-          gradient.addColorStop(0, "rgba(160, 120, 255, 0)");
-          gradient.addColorStop(0.7, "rgba(180, 144, 255, 0.16)");
-          gradient.addColorStop(1, "rgba(180, 144, 255, 0)");
+          gradient.addColorStop(0, "rgba(138, 138, 138, 0)");
+          gradient.addColorStop(0.7, "rgba(160, 160, 160, 0.16)");
+          gradient.addColorStop(1, "rgba(160, 160, 160, 0)");
           context.fillStyle = gradient;
           context.fillRect(0, 0, 128, 128);
         }
@@ -618,7 +618,7 @@ export default function Orrery3D({
           disposables.push(cloudMaterial);
 
           const atmosphereMaterial = new THREE.ShaderMaterial({
-            uniforms: { uColor: { value: new THREE.Color(0x69a8ff) } },
+            uniforms: { uColor: { value: new THREE.Color(0xa1a1a1) } },
             vertexShader: `
               varying vec3 vNormal;
               varying vec3 vView;
@@ -652,7 +652,7 @@ export default function Orrery3D({
           const inner = radius * 1.32;
           const outer = radius * 2.34;
           const ringGeometry = new THREE.RingGeometry(inner, outer, 160, 1);
-          const ringMat = ringMaterial(inner, outer, 0xe8d3a6, 0.72);
+          const ringMat = ringMaterial(inner, outer, 0xd4d4d4, 0.72);
           const ring = new THREE.Mesh(ringGeometry, ringMat);
           ring.rotation.x = -Math.PI / 2;
           tilt.add(ring);
@@ -663,7 +663,7 @@ export default function Orrery3D({
           const inner = radius * 1.55;
           const outer = radius * 1.95;
           const ringGeometry = new THREE.RingGeometry(inner, outer, 128, 1);
-          const ringMat = ringMaterial(inner, outer, 0x9fdde0, 0.3);
+          const ringMat = ringMaterial(inner, outer, 0xd0d0d0, 0.3);
           const ring = new THREE.Mesh(ringGeometry, ringMat);
           ring.rotation.x = -Math.PI / 2;
           tilt.add(ring);
@@ -765,7 +765,7 @@ export default function Orrery3D({
       applySelectionRef.current = (slug: string) => {
         orbitLines.forEach((material, key) => {
           material.opacity = key === slug ? 0.75 : 0.34;
-          material.color.setHex(key === slug ? 0xe6d6ff : 0xcbb9ef);
+          material.color.setHex(key === slug ? 0xdcdcdc : 0xc1c1c1);
         });
         built.forEach((item) => {
           item.marker.visible = item.planet.slug === slug;

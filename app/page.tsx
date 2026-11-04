@@ -72,7 +72,7 @@ const PLANETS: Planet[] = [
       "A thin exosphere of oxygen, sodium, hydrogen, helium and potassium.",
     science:
       "MESSENGER mapped the planet and found water ice hiding in permanently shadowed polar craters, likely delivered by comets and asteroids.",
-    accent: "rgba(202, 180, 154, 0.45)",
+    accent: "rgba(183, 183, 183, 0.45)",
     texture: "/textures/2k_mercury.jpg",
     spin: 58,
     dot: 1.35,
@@ -102,7 +102,7 @@ const PLANETS: Planet[] = [
       "96.5% carbon dioxide, 3.5% nitrogen, with clouds of sulfuric acid.",
     science:
       "Venus is a natural laboratory for runaway greenhouse warming. Its surface pressure is about 92 times Earth's — equivalent to 900 m underwater on Earth.",
-    accent: "rgba(245, 198, 122, 0.5)",
+    accent: "rgba(203, 203, 203, 0.5)",
     texture: "/textures/2k_venus_atmosphere.jpg",
     spin: 82,
     dot: 1.8,
@@ -131,7 +131,7 @@ const PLANETS: Planet[] = [
       "78% nitrogen, 21% oxygen, 0.9% argon and 0.04% carbon dioxide.",
     science:
       "Earth's magnetic field and ozone layer shield the biosphere from charged particles and ultraviolet radiation — two reasons our planet remains habitable.",
-    accent: "rgba(110, 180, 255, 0.6)",
+    accent: "rgba(171, 171, 171, 0.6)",
     texture: "/textures/2k_earth_daymap.jpg",
     spin: 34,
     dot: 1.95,
@@ -161,7 +161,7 @@ const PLANETS: Planet[] = [
       "95% carbon dioxide, 2.8% nitrogen, 2% argon and traces of oxygen.",
     science:
       "Orbiters and rovers have found ancient riverbeds, clay minerals and subsurface ice. Mars is a prime target in the search for past life.",
-    accent: "rgba(235, 122, 86, 0.55)",
+    accent: "rgba(143, 143, 143, 0.55)",
     texture: "/textures/2k_mars.jpg",
     spin: 36,
     dot: 1.55,
@@ -190,7 +190,7 @@ const PLANETS: Planet[] = [
       "About 90% hydrogen and 10% helium, with traces of methane and ammonia.",
     science:
       "Jupiter's moon Europa hides a global salt-water ocean beneath its icy crust. Tidal heating from Jupiter keeps that ocean liquid — a leading target in astrobiology.",
-    accent: "rgba(226, 181, 132, 0.45)",
+    accent: "rgba(187, 187, 187, 0.45)",
     texture: "/textures/2k_jupiter.jpg",
     spin: 22,
     dot: 3.3,
@@ -220,7 +220,7 @@ const PLANETS: Planet[] = [
       "About 96% hydrogen and 3% helium, with traces of methane and ammonia.",
     science:
       "Enceladus vents plumes of water vapour and organic molecules from a subsurface ocean, making this small moon one of astrobiology's most exciting destinations.",
-    accent: "rgba(236, 214, 160, 0.45)",
+    accent: "rgba(215, 215, 215, 0.45)",
     texture: "/textures/2k_saturn.jpg",
     spin: 24,
     dot: 2.9,
@@ -251,7 +251,7 @@ const PLANETS: Planet[] = [
       "About 83% hydrogen, 15% helium and 2% methane, which gives its blue-green colour.",
     science:
       "Uranus has 13 known rings and 28 moons. Its extreme tilt may be the result of a giant impact early in its history — one reason planetary scientists want to return with an orbiter.",
-    accent: "rgba(128, 225, 225, 0.5)",
+    accent: "rgba(204, 204, 204, 0.5)",
     texture: "/textures/2k_uranus.jpg",
     spin: 30,
     dot: 2.3,
@@ -281,7 +281,7 @@ const PLANETS: Planet[] = [
       "About 80% hydrogen, 19% helium and 1.5% methane, with high-altitude clouds.",
     science:
       "Neptune's largest moon, Triton, orbits backwards and may be a captured Kuiper Belt object. Its surface shows nitrogen geysers — evidence of active geology far from the Sun.",
-    accent: "rgba(108, 150, 255, 0.55)",
+    accent: "rgba(149, 149, 149, 0.55)",
     texture: "/textures/2k_neptune.jpg",
     spin: 28,
     dot: 2.2,
@@ -574,11 +574,11 @@ function CosmicBackground() {
       return sprite;
     };
 
-    const sprite = makeGlow("255,255,255");
+    const sprite = makeGlow("255, 255, 255");
     const dustSprites: Record<string, HTMLCanvasElement> = {
-      "70, 110, 210": makeGlow("70, 110, 210"),
-      "45, 85, 175": makeGlow("45, 85, 175"),
-      "90, 135, 225": makeGlow("90, 135, 225"),
+      "109, 109, 109": makeGlow("109, 109, 109"),
+      "83, 83, 83": makeGlow("83, 83, 83"),
+      "132, 132, 132": makeGlow("132, 132, 132"),
     };
 
     const makeStars = () => {
@@ -603,10 +603,10 @@ function CosmicBackground() {
         drift: (Math.random() - 0.5) * 0.008,
         hue:
           Math.random() > 0.5
-            ? "70, 110, 210"
+            ? "109, 109, 109"
             : Math.random() > 0.4
-              ? "45, 85, 175"
-              : "90, 135, 225",
+              ? "83, 83, 83"
+              : "132, 132, 132",
       }));
     };
 
@@ -638,12 +638,12 @@ function CosmicBackground() {
       const alpha = 0.22 + pulse * 0.72;
       const color =
         star.tint > 0.88
-          ? "190, 210, 255"
+          ? "209, 209, 209"
           : star.tint < 0.13
-            ? "175, 210, 255"
+            ? "206, 206, 206"
             : star.tint > 0.5 && star.tint < 0.56
-              ? "255, 224, 190"
-              : "248, 246, 255";
+              ? "228, 228, 228"
+              : "247, 247, 247";
 
       context.globalAlpha = alpha;
       context.fillStyle = `rgb(${color})`;
@@ -681,16 +681,16 @@ function CosmicBackground() {
         meteor.x - nx * tail,
         meteor.y - ny * tail,
       );
-      gradient.addColorStop(0, `rgba(255,255,255,${0.85 * fade})`);
-      gradient.addColorStop(0.18, `rgba(214,190,255,${0.45 * fade})`);
-      gradient.addColorStop(1, "rgba(180,140,255,0)");
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${0.85 * fade})`);
+      gradient.addColorStop(0.18, `rgba(200, 200, 200, ${0.45 * fade})`);
+      gradient.addColorStop(1, "rgba(157, 157, 157, 0)");
       context.strokeStyle = gradient;
       context.lineWidth = 1.4;
       context.beginPath();
       context.moveTo(meteor.x, meteor.y);
       context.lineTo(meteor.x - nx * tail, meteor.y - ny * tail);
       context.stroke();
-      context.fillStyle = `rgba(255,255,255,${0.9 * fade})`;
+      context.fillStyle = `rgba(255, 255, 255, ${0.9 * fade})`;
       context.beginPath();
       context.arc(meteor.x, meteor.y, 1.7, 0, Math.PI * 2);
       context.fill();
@@ -858,7 +858,7 @@ function PlanetDetail({
         <span className="detail-orbit" aria-hidden="true" />
         <PlanetGlobe planet={planet} />
         <p className="visual-caption">
-          <span aria-hidden="true">◈</span> NASA-derived surface map
+          NASA-derived surface map
           <br />
           Rotation is stylised; the data is real.
         </p>
@@ -875,7 +875,7 @@ function PlanetDetail({
         <p className="detail-description">{planet.description}</p>
 
         <p className="detail-highlight">
-          <span aria-hidden="true">✦</span> {planet.highlight}
+          {planet.highlight}
         </p>
 
         <div className="fact-grid">
@@ -1070,7 +1070,6 @@ export default function Home() {
               </span>
             ))}
           </span>
-          <span className="wordmark-star" aria-hidden="true">✦</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#explorer">Solar system</a>
@@ -1079,7 +1078,7 @@ export default function Home() {
           <a href="#wonders">Wonders</a>
         </nav>
         <a className="header-cta" href="#explorer">
-          Start exploring <span aria-hidden="true">↘</span>
+          Start exploring <span aria-hidden="true">↓</span>
         </a>
       </header>
 
@@ -1231,7 +1230,7 @@ export default function Home() {
             </div>
 
             <p className="light-year-note reveal">
-              <span aria-hidden="true">✦</span> A light-year is a measure of
+              A light-year is a measure of
               distance, not time: about 9.46 trillion kilometres. The universe
               is about 13.8 billion years old, yet the observable universe
               stretches about 93 billion light-years across because space
@@ -1446,7 +1445,7 @@ export default function Home() {
 
       <footer className="site-footer">
         <a className="footer-wordmark" href="#home">
-          TARA<span aria-hidden="true">✦</span>
+          TARA
         </a>
         <p className="footer-line">
           A little closer to the cosmos · astronomy, astrophysics &amp;
