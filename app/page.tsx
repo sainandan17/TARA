@@ -1059,7 +1059,18 @@ export default function Home() {
 
       <header className="site-header">
         <a className="wordmark" href="#home" aria-label="TARA home">
-          TARA<span className="wordmark-star" aria-hidden="true">✦</span>
+          <span className="wordmark-letters" aria-hidden="true">
+            {"TARA".split("").map((letter, index) => (
+              <span
+                className="wordmark-letter"
+                key={`${letter}-${index}`}
+                style={{ "--i": index } as Vars}
+              >
+                {letter}
+              </span>
+            ))}
+          </span>
+          <span className="wordmark-star" aria-hidden="true">✦</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#explorer">Solar system</a>
@@ -1087,6 +1098,7 @@ export default function Home() {
                 {"TARA".split("").map((letter, index) => (
                   <span
                     className="title-letter"
+                    data-letter={letter}
                     key={`${letter}-${index}`}
                     style={{ "--i": index } as Vars}
                   >

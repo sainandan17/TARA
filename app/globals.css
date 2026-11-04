@@ -210,6 +210,37 @@ a:focus-visible {
   animation: star-twinkle 4s ease-in-out infinite;
 }
 
+/* Header wordmark: a conventional staggered rise on load, and a hover
+   that lifts the letters in sequence while the star turns. */
+.wordmark-letters {
+  display: inline-flex;
+}
+
+.wordmark-letter {
+  display: inline-block;
+  animation: wordmark-rise 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 70ms + 150ms);
+  transition:
+    translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.25s ease;
+  transition-delay: calc(var(--i) * 40ms);
+}
+
+.wordmark-star {
+  transition: rotate 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wordmark:focus-visible .wordmark-letter,
+.wordmark:hover .wordmark-letter {
+  translate: 0 -3px;
+  color: #fff;
+}
+
+.wordmark:focus-visible .wordmark-star,
+.wordmark:hover .wordmark-star {
+  rotate: 144deg;
+}
+
 .site-header nav {
   display: flex;
   gap: clamp(20px, 3.4vw, 44px);
@@ -469,6 +500,7 @@ a:focus-visible {
 }
 
 .title-letter {
+  position: relative;
   display: inline-block;
   background: linear-gradient(180deg, #fff 8%, #f1e7ff 46%, #bda2ef 100%);
   background-size: 220% 100%;
@@ -479,15 +511,59 @@ a:focus-visible {
   filter: drop-shadow(0 0 34px rgba(147, 106, 230, 0.32));
   opacity: 0;
   transform-origin: 50% 100%;
+  /* Hover motion uses the individual translate/scale properties so it
+     layers on top of the arrival animation, which owns "transform". */
+  transition:
+    translate 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+    scale 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* One-time light glint that travels across each letter once it has
+   landed, left to right, staggered down the word. */
+.title-letter::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 36%,
+    rgba(255, 255, 255, 0.95) 50%,
+    transparent 64%
+  );
+  background-repeat: no-repeat;
+  background-size: 280% 100%;
+  background-position: 130% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  content: attr(data-letter);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .tara-ready .title-letter {
   animation:
-    letter-arrive 1.2s cubic-bezier(0.16, 1, 0.3, 1) both,
+    letter-arrive 1.45s cubic-bezier(0.16, 1, 0.3, 1) both,
     letter-sheen 7.5s ease-in-out infinite;
   animation-delay:
-    calc(var(--i) * 82ms + 100ms),
-    calc(var(--i) * 82ms + 2.6s);
+    calc(var(--i) * 95ms + 100ms),
+    calc(var(--i) * 95ms + 2.8s);
+}
+
+.tara-ready .title-letter::after {
+  animation: letter-glint 1.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 150ms + 1.85s);
+}
+
+@media (hover: hover) {
+  .title-letter:hover {
+    translate: 0 -0.07em;
+    scale: 1.04;
+  }
+
+  .title-letter:hover + .title-letter {
+    translate: 0 -0.03em;
+    scale: 1.015;
+  }
 }
 
 .title-star {
@@ -2461,21 +2537,57 @@ a:focus-visible {
   }
 }
 
+/* Each letter tips up out of a blur with a little overshoot, and its glow
+   blooms as it lands before settling to the resting halo. The glow is part
+   of every keyframe so the resting drop-shadow is never lost to the fill. */
 @keyframes letter-arrive {
   0% {
     opacity: 0;
-    transform: translateY(46px) rotateX(-34deg) scale(0.97);
-    filter: blur(14px);
+    transform: perspective(700px) translateY(0.3em) rotateX(-52deg) scale(0.94);
+    filter: blur(16px) drop-shadow(0 0 0 rgba(147, 106, 230, 0));
   }
 
-  62% {
+  55% {
     opacity: 1;
-    filter: blur(0);
+    transform: perspective(700px) translateY(-0.025em) rotateX(7deg)
+      scale(1.015);
+    filter: blur(1.5px) drop-shadow(0 0 48px rgba(172, 132, 255, 0.55));
   }
 
   100% {
     opacity: 1;
-    transform: translateY(0) rotateX(0) scale(1);
+    transform: perspective(700px) translateY(0) rotateX(0) scale(1);
+    filter: blur(0) drop-shadow(0 0 34px rgba(147, 106, 230, 0.32));
+  }
+}
+
+@keyframes letter-glint {
+  0% {
+    opacity: 0;
+    background-position: 130% 0;
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    background-position: -30% 0;
+  }
+}
+
+@keyframes wordmark-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
     filter: blur(0);
   }
 }
@@ -3137,6 +3249,15 @@ a:focus-visible {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .title-letter:hover,
+  .title-letter:hover + .title-letter,
+  .wordmark:hover .wordmark-letter,
+  .wordmark:hover .wordmark-star {
+    translate: none;
+    scale: none;
+    rotate: none;
   }
 
   .title-star {
