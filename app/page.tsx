@@ -8,6 +8,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react";
+import Orrery3D from "./orrery-3d";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -288,8 +289,6 @@ const PLANETS: Planet[] = [
     startAngle: 304.88,
   },
 ];
-
-const SPEEDS = [1, 2, 4, 8, 16, 32];
 
 const SCIENCE_FIELDS = [
   {
@@ -832,243 +831,6 @@ function PlanetGlobe({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Orrery                                                             */
-/* ------------------------------------------------------------------ */
-
-function Orrery({
-  selected,
-  onSelect,
-}: {
-  selected: Planet;
-  onSelect: (planet: Planet, scroll: boolean) => void;
-}) {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const clockRef = useRef<HTMLSpanElement>(null);
-  const planetRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const simDays = useRef(0);
-  const speedRef = useRef(1);
-  const pausedRef = useRef(false);
-  const hoverRef = useRef(false);
-  const [speed, setSpeed] = useState(1);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    speedRef.current = speed;
-  }, [speed]);
-
-  useEffect(() => {
-    pausedRef.current = paused;
-  }, [paused]);
-
-  useEffect(() => {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    let frame = 0;
-    let last = performance.now();
-    let count = 0;
-
-    const place = () => {
-      PLANETS.forEach((planet, index) => {
-        const element = planetRefs.current[index];
-        if (!element) return;
-        const angle =
-          ((planet.startAngle +
-            (simDays.current / planet.periodDays) * 360) *
-            Math.PI) /
-          180;
-        element.style.left = `${50 + Math.cos(angle) * planet.orbit}%`;
-        element.style.top = `${50 - Math.sin(angle) * planet.orbit}%`;
-      });
-
-      if (clockRef.current) {
-        const years = simDays.current / EARTH_YEAR_DAYS;
-        clockRef.current.textContent = `T + ${years.toFixed(2)} yr`;
-      }
-    };
-
-    const step = (now: number) => {
-      const delta = Math.min((now - last) / 1000, 0.1);
-      last = now;
-      if (!reduced && !pausedRef.current && !hoverRef.current) {
-        simDays.current += delta * (EARTH_YEAR_DAYS / 40) * speedRef.current;
-      }
-      if (count++ % 2 === 0) place();
-      frame = window.requestAnimationFrame(step);
-    };
-
-    place();
-    frame = window.requestAnimationFrame(step);
-
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
-  const togglePause = useCallback(() => {
-    setPaused((value) => {
-      pausedRef.current = !value;
-      return !value;
-    });
-  }, []);
-
-  const reset = useCallback(() => {
-    simDays.current = 0;
-    setPaused(false);
-    pausedRef.current = false;
-  }, []);
-
-  return (
-    <div className="orrery-shell">
-      <div className="orrery-toolbar">
-        <div className={`sim-clock${paused ? " is-paused" : ""}`}>
-          <span className="sim-pulse" aria-hidden="true" />
-          <span ref={clockRef} className="sim-time">
-            T + 0.00 yr
-          </span>
-          <span className="sim-epoch">J2000 start</span>
-        </div>
-        <div className="orrery-controls">
-          <button
-            type="button"
-            className="control-button play-button"
-            onClick={togglePause}
-            aria-label={paused ? "Resume the orbits" : "Pause the orbits"}
-          >
-            <span aria-hidden="true">{paused ? "▶" : "❚❚"}</span>
-            {paused ? "Play" : "Pause"}
-          </button>
-          <div
-            className="speed-group"
-            role="group"
-            aria-label="Simulation speed"
-          >
-            {SPEEDS.map((value) => (
-              <button
-                type="button"
-                key={value}
-                className={`speed-button${speed === value ? " active" : ""}`}
-                onClick={() => setSpeed(value)}
-                aria-pressed={speed === value}
-                aria-label={`Set simulation speed to ${value} times`}
-              >
-                ×{value}
-              </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="control-button"
-            onClick={reset}
-            aria-label="Reset the simulation to the J2000 epoch"
-          >
-            ↺<span className="control-word">Reset</span>
-          </button>
-        </div>
-      </div>
-
-      <div
-        className="orrery-stage"
-        ref={stageRef}
-        role="group"
-        aria-label="Top-down model of the Solar System with the Sun at the centre"
-        onPointerEnter={() => {
-          if (window.matchMedia("(hover: hover)").matches) hoverRef.current = true;
-        }}
-        onPointerLeave={() => {
-          hoverRef.current = false;
-        }}
-      >
-        <div className="stage-grid" aria-hidden="true" />
-        <div className="stage-horizon" aria-hidden="true" />
-
-        {PLANETS.map((planet) => (
-          <span
-            className={`orbit-ring${selected.slug === planet.slug ? " is-selected" : ""}`}
-            key={`ring-${planet.slug}`}
-            style={{
-              width: `${planet.orbit * 2}%`,
-              height: `${planet.orbit * 2}%`,
-            }}
-            aria-hidden="true"
-          />
-        ))}
-
-        <div className="sun-anchor">
-          <div className="sun-corona" aria-hidden="true" />
-          <div
-            className="sun-body"
-            role="img"
-            aria-label="The Sun, a G-type main-sequence star"
-          />
-          <span className="sun-label">Sun</span>
-        </div>
-
-        {PLANETS.map((planet, index) => (
-          <div
-            className="orbit-anchor"
-            key={planet.slug}
-            ref={(element) => {
-              planetRefs.current[index] = element;
-            }}
-          >
-            <button
-              type="button"
-              className={`planet-node ${planet.slug}${selected.slug === planet.slug ? " is-selected" : ""}`}
-              style={
-                {
-                  "--dot": `${planet.dot}%`,
-                  "--tex": `url("${planet.texture}")`,
-                  "--spin": `${planet.spin * 1.8}s`,
-                  "--accent": planet.accent,
-                } as Vars
-              }
-              onClick={() => onSelect(planet, true)}
-              onFocus={() => {
-                hoverRef.current = true;
-              }}
-              onBlur={() => {
-                hoverRef.current = false;
-              }}
-              aria-label={`Explore ${planet.name}, orbital period ${planet.periodLabel}`}
-              aria-pressed={selected.slug === planet.slug}
-              title={`${planet.name} · ${planet.periodLabel} orbit`}
-            >
-              <span className="orbit-dot" aria-hidden="true" />
-              <span className="orbit-name">{planet.name}</span>
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <div className="orrery-footer">
-        <p className="orbit-caption">
-          Orbital periods are kept in their true ratios — one Earth year takes
-          40 seconds at ×1. Distances are square-root compressed so Neptune
-          stays on screen. Hover the map to pause it.
-        </p>
-        <div className="planet-picker" role="group" aria-label="Jump to a planet">
-          {PLANETS.map((planet) => (
-            <button
-              type="button"
-              key={planet.slug}
-              className={`picker-button${selected.slug === planet.slug ? " active" : ""}`}
-              onClick={() => onSelect(planet, false)}
-              aria-pressed={selected.slug === planet.slug}
-            >
-              <span
-                className="picker-dot"
-                style={{ background: planet.accent }}
-                aria-hidden="true"
-              />
-              {planet.name}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /*  Planet dossier                                                     */
 /* ------------------------------------------------------------------ */
 
@@ -1332,9 +1094,14 @@ export default function Home() {
                   </span>
                 ))}
                 <span className="title-star" aria-hidden="true">
+                  <span className="title-star-burst" />
                   <span className="title-star-core" />
                   <span className="title-star-tail" />
                 </span>
+                <span className="title-spark spark-1" aria-hidden="true" />
+                <span className="title-spark spark-2" aria-hidden="true" />
+                <span className="title-spark spark-3" aria-hidden="true" />
+                <span className="title-spark spark-4" aria-hidden="true" />
               </span>
             </h1>
 
@@ -1393,7 +1160,14 @@ export default function Home() {
             </div>
 
             <div className="reveal" data-delay="80">
-              <Orrery selected={selected} onSelect={handleSelect} />
+              <Orrery3D
+                planets={PLANETS}
+                selectedSlug={selected.slug}
+                onPick={(slug) => {
+                  const planet = PLANETS.find((item) => item.slug === slug);
+                  if (planet) handleSelect(planet, true);
+                }}
+              />
             </div>
 
             <PlanetDetail
