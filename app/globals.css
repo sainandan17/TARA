@@ -2,8 +2,8 @@
 
 :root {
   color-scheme: dark;
-  --void: #020105;
-  --void-soft: #05030b;
+  --void: #01030a;
+  --void-soft: #030813;
   --ink: #f6f2ff;
   --muted: #a49bb8;
   --soft: #d9d0ea;
@@ -13,7 +13,7 @@
   --violet-bright: #dcc6ff;
   --gold: #f0c98c;
   --blue: #8dbdff;
-  --panel: rgba(11, 8, 20, 0.66);
+  --panel: rgba(3, 7, 16, 0.66);
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans: "Manrope", "Segoe UI", system-ui, sans-serif;
   --display: "Cinzel", "Cormorant Garamond", Georgia, serif;
@@ -27,7 +27,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
   overflow-x: clip;
-  scrollbar-color: rgba(180, 145, 240, 0.4) rgba(4, 3, 9, 0.9);
+  scrollbar-color: rgba(70, 110, 190, 0.4) rgba(1, 3, 7, 0.9);
 }
 
 body {
@@ -38,8 +38,8 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background:
-    radial-gradient(ellipse 70% 48% at 50% -12%, rgba(95, 57, 158, 0.22), transparent 62%),
-    radial-gradient(ellipse 50% 40% at 8% 55%, rgba(57, 32, 105, 0.11), transparent 70%),
+    radial-gradient(ellipse 70% 48% at 50% -12%, rgba(28, 62, 140, 0.22), transparent 62%),
+    radial-gradient(ellipse 50% 40% at 8% 55%, rgba(18, 42, 100, 0.12), transparent 70%),
     var(--void);
   font-family: var(--sans);
   font-weight: 300;
@@ -105,7 +105,7 @@ a:focus-visible {
 .milky-band {
   z-index: -4;
   background:
-    linear-gradient(112deg, transparent 28%, rgba(100, 70, 155, 0.08) 45%, rgba(155, 125, 210, 0.11) 51%, rgba(90, 65, 140, 0.08) 57%, transparent 72%),
+    linear-gradient(112deg, transparent 28%, rgba(30, 66, 140, 0.08) 45%, rgba(60, 105, 190, 0.11) 51%, rgba(26, 58, 125, 0.08) 57%, transparent 72%),
     url("/textures/2k_stars_milky_way.jpg") center / cover no-repeat;
   filter: blur(0.4px) saturate(0.7);
   opacity: 0.13;
@@ -124,30 +124,30 @@ a:focus-visible {
 
 .nebula-a {
   background:
-    radial-gradient(ellipse 30% 20% at 18% 18%, rgba(144, 84, 196, 0.22), transparent 72%),
-    radial-gradient(ellipse 22% 16% at 30% 32%, rgba(84, 62, 168, 0.16), transparent 74%);
+    radial-gradient(ellipse 30% 20% at 18% 18%, rgba(34, 74, 160, 0.22), transparent 72%),
+    radial-gradient(ellipse 22% 16% at 30% 32%, rgba(24, 56, 132, 0.16), transparent 74%);
   animation: nebula-drift-a 38s ease-in-out infinite alternate;
 }
 
 .nebula-b {
   background:
-    radial-gradient(ellipse 26% 18% at 82% 38%, rgba(99, 77, 190, 0.18), transparent 74%),
-    radial-gradient(ellipse 20% 15% at 70% 62%, rgba(168, 82, 178, 0.13), transparent 72%);
+    radial-gradient(ellipse 26% 18% at 82% 38%, rgba(30, 68, 150, 0.18), transparent 74%),
+    radial-gradient(ellipse 20% 15% at 70% 62%, rgba(22, 52, 122, 0.13), transparent 72%);
   animation: nebula-drift-b 46s ease-in-out infinite alternate-reverse;
 }
 
 .nebula-c {
   background:
-    radial-gradient(ellipse 32% 18% at 48% 92%, rgba(71, 65, 168, 0.17), transparent 76%),
-    radial-gradient(ellipse 18% 14% at 10% 72%, rgba(126, 73, 170, 0.12), transparent 74%);
+    radial-gradient(ellipse 32% 18% at 48% 92%, rgba(26, 62, 138, 0.17), transparent 76%),
+    radial-gradient(ellipse 18% 14% at 10% 72%, rgba(20, 48, 112, 0.12), transparent 74%);
   animation: nebula-drift-a 58s ease-in-out infinite alternate-reverse;
 }
 
 .vignette {
   z-index: -3;
   background:
-    radial-gradient(ellipse at 50% 38%, transparent 38%, rgba(2, 1, 5, 0.42) 100%),
-    linear-gradient(180deg, rgba(2, 1, 5, 0.18), transparent 20%, transparent 78%, rgba(2, 1, 5, 0.42));
+    radial-gradient(ellipse at 50% 38%, transparent 38%, rgba(1, 2, 4, 0.42) 100%),
+    linear-gradient(180deg, rgba(1, 2, 4, 0.18), transparent 20%, transparent 78%, rgba(1, 2, 4, 0.42));
 }
 
 /* ------------------------------------------------------------------ */
@@ -185,7 +185,7 @@ a:focus-visible {
   gap: 28px;
   padding: 22px clamp(22px, 5vw, 74px);
   border-bottom: 1px solid rgba(214, 190, 255, 0.08);
-  background: linear-gradient(180deg, rgba(3, 2, 8, 0.72), rgba(3, 2, 8, 0.24));
+  background: linear-gradient(180deg, rgba(1, 3, 6, 0.72), rgba(1, 3, 6, 0.24));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -409,7 +409,7 @@ a:focus-visible {
 }
 
 .button.ghost {
-  background: rgba(14, 10, 25, 0.44);
+  background: rgba(4, 9, 20, 0.44);
 }
 
 .button:hover {
@@ -471,8 +471,8 @@ a:focus-visible {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(123, 82, 192, 0.11), transparent 52%),
-    radial-gradient(circle at 50% 50%, transparent 58%, rgba(175, 138, 255, 0.05) 59%, transparent 60%);
+    radial-gradient(circle, rgba(34, 74, 160, 0.11), transparent 52%),
+    radial-gradient(circle at 50% 50%, transparent 58%, rgba(80, 130, 215, 0.05) 59%, transparent 60%);
   filter: blur(2px);
   pointer-events: none;
 }
@@ -821,7 +821,7 @@ a:focus-visible {
   border-radius: 4px;
   background:
     radial-gradient(ellipse 60% 55% at 50% 42%, rgba(80, 49, 130, 0.18), transparent 65%),
-    linear-gradient(150deg, rgba(12, 9, 22, 0.8), rgba(5, 4, 11, 0.82));
+    linear-gradient(150deg, rgba(4, 8, 17, 0.8), rgba(2, 4, 9, 0.82));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.035),
     0 40px 140px rgba(0, 0, 0, 0.45);
@@ -900,7 +900,7 @@ a:focus-visible {
   padding: 0 10px;
   border: 1px solid rgba(208, 182, 255, 0.16);
   border-radius: 999px;
-  background: rgba(20, 14, 33, 0.55);
+  background: rgba(5, 12, 26, 0.55);
   color: #b8accd;
   font-size: 8px;
   letter-spacing: 0.1em;
@@ -935,7 +935,7 @@ a:focus-visible {
   padding: 2px;
   border: 1px solid rgba(208, 182, 255, 0.14);
   border-radius: 999px;
-  background: rgba(13, 9, 22, 0.6);
+  background: rgba(4, 8, 17, 0.6);
 }
 
 .speed-button {
@@ -981,7 +981,7 @@ a:focus-visible {
   background:
     radial-gradient(ellipse 62% 58% at 50% 48%, rgba(72, 45, 118, 0.2), transparent 72%),
     radial-gradient(ellipse 30% 26% at 50% 49%, rgba(255, 176, 84, 0.055), transparent 70%),
-    #05040b;
+    #030812;
   cursor: grab;
   touch-action: pan-y;
 }
@@ -993,7 +993,7 @@ a:focus-visible {
   background: radial-gradient(
     ellipse 82% 80% at 50% 48%,
     transparent 66%,
-    rgba(3, 2, 8, 0.28) 100%
+    rgba(1, 3, 6, 0.28) 100%
   );
   content: "";
   pointer-events: none;
@@ -1093,7 +1093,7 @@ a:focus-visible {
   left: 14px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(9, 7, 16, 0.58);
+  background: rgba(3, 6, 12, 0.58);
   color: #8a7e9e;
   font-size: 8px;
   letter-spacing: 0.13em;
@@ -1110,7 +1110,7 @@ a:focus-visible {
   align-content: center;
   justify-items: center;
   gap: 14px;
-  background: #05040b;
+  background: #030812;
   color: #9a8fae;
   font-size: 10px;
   letter-spacing: 0.16em;
@@ -1150,7 +1150,7 @@ a:focus-visible {
   border-radius: 3px;
   background:
     radial-gradient(ellipse 60% 120% at 8% 0%, rgba(84, 122, 106, 0.12), transparent 66%),
-    rgba(17, 13, 27, 0.6);
+    rgba(4, 10, 21, 0.6);
 }
 
 .earth-live-head {
@@ -1316,7 +1316,7 @@ a:focus-visible {
   padding: 6px 10px;
   border: 1px solid rgba(207, 181, 255, 0.13);
   border-radius: 999px;
-  background: rgba(17, 12, 28, 0.48);
+  background: rgba(4, 10, 22, 0.48);
   color: #9e93b1;
   font-size: 8px;
   letter-spacing: 0.07em;
@@ -1367,7 +1367,7 @@ a:focus-visible {
   border-radius: 4px;
   background:
     radial-gradient(ellipse 54% 62% at 20% 46%, rgba(98, 59, 158, 0.19), transparent 66%),
-    linear-gradient(145deg, rgba(15, 11, 27, 0.86), rgba(6, 5, 13, 0.84));
+    linear-gradient(145deg, rgba(4, 10, 21, 0.86), rgba(2, 5, 10, 0.84));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.035),
     0 30px 110px rgba(0, 0, 0, 0.28);
@@ -1664,7 +1664,7 @@ a:focus-visible {
 .fact {
   min-width: 0;
   padding: 12px 13px;
-  background: rgba(7, 5, 14, 0.8);
+  background: rgba(2, 5, 11, 0.8);
 }
 
 .fact-wide {
@@ -1868,7 +1868,7 @@ a:focus-visible {
   border: 1px solid var(--line);
   background:
     radial-gradient(ellipse 80% 50% at 20% 0%, rgba(111, 71, 171, 0.13), transparent 70%),
-    linear-gradient(160deg, rgba(17, 12, 29, 0.68), rgba(7, 5, 13, 0.72));
+    linear-gradient(160deg, rgba(5, 10, 23, 0.68), rgba(2, 5, 10, 0.72));
   transition:
     transform 260ms ease,
     border-color 260ms ease,
@@ -1892,7 +1892,7 @@ a:focus-visible {
   border-color: rgba(210, 183, 255, 0.3);
   background:
     radial-gradient(ellipse 80% 50% at 20% 0%, rgba(126, 82, 190, 0.18), transparent 70%),
-    linear-gradient(160deg, rgba(20, 14, 34, 0.8), rgba(8, 6, 15, 0.8));
+    linear-gradient(160deg, rgba(5, 12, 27, 0.8), rgba(2, 5, 12, 0.8));
 }
 
 .science-index {
@@ -1979,7 +1979,7 @@ a:focus-visible {
   margin: 24px auto 0;
   padding: 18px 22px;
   border: 1px solid rgba(205, 180, 255, 0.08);
-  background: rgba(10, 8, 18, 0.4);
+  background: rgba(3, 6, 14, 0.4);
 }
 
 .note-mark {
@@ -2010,7 +2010,7 @@ a:focus-visible {
   border-bottom: 1px solid rgba(205, 180, 255, 0.06);
   background:
     radial-gradient(ellipse 55% 42% at 50% 0%, rgba(84, 50, 133, 0.15), transparent 70%),
-    linear-gradient(180deg, rgba(7, 5, 13, 0.15), rgba(9, 6, 17, 0.42) 50%, rgba(7, 5, 13, 0.15));
+    linear-gradient(180deg, rgba(2, 5, 10, 0.15), rgba(3, 6, 13, 0.42) 50%, rgba(2, 5, 10, 0.15));
 }
 
 .timeline {
@@ -2040,7 +2040,7 @@ a:focus-visible {
   height: 9px;
   border: 1px solid rgba(226, 205, 255, 0.7);
   border-radius: 50%;
-  background: #0a0712;
+  background: #050c1a;
   box-shadow:
     0 0 0 4px rgba(181, 140, 255, 0.08),
     0 0 14px rgba(181, 140, 255, 0.4);
@@ -2082,7 +2082,7 @@ a:focus-visible {
   min-height: 218px;
   padding: 24px 21px;
   border: 1px solid var(--line);
-  background: rgba(10, 7, 18, 0.58);
+  background: rgba(3, 6, 14, 0.58);
   transition:
     transform 240ms ease,
     border-color 240ms ease,
@@ -2092,7 +2092,7 @@ a:focus-visible {
 .cosmo-card:hover {
   transform: translateY(-3px);
   border-color: rgba(209, 182, 255, 0.3);
-  background: rgba(16, 11, 28, 0.7);
+  background: rgba(4, 10, 22, 0.7);
 }
 
 .cosmo-number {
@@ -2128,7 +2128,7 @@ a:focus-visible {
   border: 1px solid var(--line);
   background:
     radial-gradient(ellipse 50% 80% at 12% 50%, rgba(93, 55, 145, 0.18), transparent 70%),
-    rgba(8, 6, 15, 0.6);
+    rgba(2, 5, 12, 0.6);
 }
 
 .dark-copy .science-tag {
@@ -2250,7 +2250,7 @@ a:focus-visible {
   border: 1px solid var(--line);
   background:
     radial-gradient(ellipse 90% 55% at 10% 0%, rgba(97, 59, 150, 0.12), transparent 70%),
-    rgba(8, 6, 14, 0.58);
+    rgba(2, 5, 11, 0.58);
   transition:
     transform 240ms ease,
     border-color 240ms ease;
@@ -2437,7 +2437,7 @@ a:focus-visible {
   gap: 12px 26px;
   padding: 24px clamp(22px, 5vw, 74px);
   border-top: 1px solid rgba(205, 180, 255, 0.09);
-  background: rgba(5, 4, 10, 0.52);
+  background: rgba(2, 4, 8, 0.52);
 }
 
 .footer-wordmark {
@@ -2479,7 +2479,7 @@ a:focus-visible {
   transform: translateY(14px);
   border: 1px solid rgba(212, 185, 255, 0.22);
   border-radius: 50%;
-  background: rgba(10, 7, 18, 0.72);
+  background: rgba(3, 6, 14, 0.72);
   color: #d8c8ee;
   font-size: 15px;
   opacity: 0;
@@ -2501,7 +2501,7 @@ a:focus-visible {
 
 .back-to-top:hover {
   border-color: rgba(226, 205, 255, 0.62);
-  background: rgba(20, 13, 34, 0.9);
+  background: rgba(5, 12, 27, 0.9);
 }
 
 /* ------------------------------------------------------------------ */

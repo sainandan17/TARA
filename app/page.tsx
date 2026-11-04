@@ -576,9 +576,9 @@ function CosmicBackground() {
 
     const sprite = makeGlow("255,255,255");
     const dustSprites: Record<string, HTMLCanvasElement> = {
-      "150, 110, 235": makeGlow("150, 110, 235"),
-      "100, 135, 235": makeGlow("100, 135, 235"),
-      "215, 130, 220": makeGlow("215, 130, 220"),
+      "70, 110, 210": makeGlow("70, 110, 210"),
+      "45, 85, 175": makeGlow("45, 85, 175"),
+      "90, 135, 225": makeGlow("90, 135, 225"),
     };
 
     const makeStars = () => {
@@ -603,10 +603,10 @@ function CosmicBackground() {
         drift: (Math.random() - 0.5) * 0.008,
         hue:
           Math.random() > 0.5
-            ? "150, 110, 235"
+            ? "70, 110, 210"
             : Math.random() > 0.4
-              ? "100, 135, 235"
-              : "215, 130, 220",
+              ? "45, 85, 175"
+              : "90, 135, 225",
       }));
     };
 
@@ -638,7 +638,7 @@ function CosmicBackground() {
       const alpha = 0.22 + pulse * 0.72;
       const color =
         star.tint > 0.88
-          ? "214, 190, 255"
+          ? "190, 210, 255"
           : star.tint < 0.13
             ? "175, 210, 255"
             : star.tint > 0.5 && star.tint < 0.56
