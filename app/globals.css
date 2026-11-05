@@ -37,10 +37,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--ink);
-  background:
-    radial-gradient(ellipse 70% 48% at 50% -12%, rgba(60, 60, 60, 0.22), transparent 62%),
-    radial-gradient(ellipse 50% 40% at 8% 55%, rgba(41, 41, 41, 0.12), transparent 70%),
-    var(--void);
+  background: #000000;
   font-family: var(--sans);
   font-weight: 300;
   line-height: 1.7;
@@ -148,6 +145,32 @@ a:focus-visible {
   background:
     radial-gradient(ellipse at 50% 38%, transparent 38%, rgba(2, 2, 2, 0.42) 100%),
     linear-gradient(180deg, rgba(2, 2, 2, 0.18), transparent 20%, transparent 78%, rgba(2, 2, 2, 0.42));
+}
+
+/* The ambient wash follows whichever body is open in the dossier. */
+.body-ambience {
+  position: fixed;
+  z-index: -2;
+  inset: -10%;
+  background:
+    radial-gradient(ellipse 62% 48% at 70% 46%, rgba(var(--ambient), 0.13), transparent 68%),
+    radial-gradient(ellipse 46% 38% at 24% 70%, rgba(var(--ambient), 0.07), transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  animation: ambience-rise 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes ambience-rise {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -2764,38 +2787,43 @@ a:focus-visible {
 @keyframes title-tail {
   0% {
     opacity: 0;
-    transform: translateY(-50%) rotate(80deg) scaleX(0.3);
+    transform: translateY(-50%) rotate(285deg) scaleX(0.3);
   }
 
   6% {
     opacity: 1;
-    transform: translateY(-50%) rotate(95deg) scaleX(0.8);
+    transform: translateY(-50%) rotate(292deg) scaleX(0.82);
   }
 
   16% {
     opacity: 1;
-    transform: translateY(-50%) rotate(122deg) scaleX(1);
+    transform: translateY(-50%) rotate(312deg) scaleX(1);
+  }
+
+  34% {
+    opacity: 1;
+    transform: translateY(-50%) rotate(340deg) scaleX(1);
   }
 
   50% {
     opacity: 1;
-    transform: translateY(-50%) rotate(180deg) scaleX(1);
+    transform: translateY(-50%) rotate(360deg) scaleX(1);
   }
 
   78% {
     opacity: 0.92;
-    transform: translateY(-50%) rotate(218deg) scaleX(0.95);
+    transform: translateY(-50%) rotate(396deg) scaleX(0.92);
   }
 
   87% {
     opacity: 0.7;
-    transform: translateY(-50%) rotate(232deg) scaleX(0.7);
+    transform: translateY(-50%) rotate(412deg) scaleX(0.66);
   }
 
   92%,
   100% {
     opacity: 0;
-    transform: translateY(-50%) rotate(235deg) scaleX(0.5);
+    transform: translateY(-50%) rotate(420deg) scaleX(0.45);
   }
 }
 
@@ -3316,8 +3344,6 @@ body::after,
 .hero-halo,
 .wordmark-star,
 .eyebrow-star,
-.title-star,
-.title-spark,
 .note-mark {
   display: none;
 }

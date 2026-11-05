@@ -33,7 +33,7 @@ type Orrery3DProps = {
 const DAY_MS = 86_400_000;
 const J2000_MS = Date.UTC(2000, 0, 1, 12, 0, 0);
 const EARTH_YEAR_DAYS = 365.256;
-const SPEEDS = [1, 2, 4, 8, 16, 32];
+const SPEEDS = [2, 4, 8, 16];
 
 const SUN_RADIUS = 7.2;
 const ORBIT_INNER = 15.5;
@@ -104,7 +104,6 @@ export default function Orrery3D({
 }: Orrery3DProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLSpanElement>(null);
   const liveDateRef = useRef<HTMLSpanElement>(null);
   const liveBarRef = useRef<HTMLSpanElement>(null);
@@ -115,14 +114,14 @@ export default function Orrery3D({
 
   type Mode = "live" | "play" | "paused";
 
-  const [speed, setSpeed] = useState(1);
-  const [mode, setMode] = useState<Mode>("live");
+  const [speed, setSpeed] = useState(2);
+  const [mode, setMode] = useState<Mode>("play");
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const speedRef = useRef(1);
-  const modeRef = useRef<Mode>("live");
-  const previousModeRef = useRef<"live" | "play">("live");
+  const speedRef = useRef(2);
+  const modeRef = useRef<Mode>("play");
+  const previousModeRef = useRef<"live" | "play">("play");
   const hoverRef = useRef(false);
   const onPickRef = useRef(onPick);
   const selectedRef = useRef(selectedSlug);
@@ -179,15 +178,14 @@ export default function Orrery3D({
   /* Three.js scene. Loaded on demand so the rest of the page stays light. */
   useEffect(() => {
     const mount = mountRef.current;
-    const labelLayer = labelRef.current;
-    if (!mount || !labelLayer) return;
+    if (!mount) return;
 
     let disposed = false;
     let cleanup = () => {};
 
     (async () => {
       const THREE = await import("three");
-      if (disposed || !mountRef.current || !labelRef.current) return;
+      if (disposed || !mountRef.current) return;
 
       let renderer: import("three").WebGLRenderer;
       try {
@@ -541,9 +539,7 @@ export default function Orrery3D({
         spin: import("three").Object3D;
         clouds?: import("three").Object3D;
         radius: number;
-        labelRadius: number;
         marker: import("three").Sprite;
-        label: HTMLButtonElement;
       };
 
       const built: BuiltPlanet[] = [];
@@ -701,9 +697,6 @@ export default function Orrery3D({
         disposables.push(marker.material);
 
         scene.add(pivot);
-        const labelRadius =
-          radius *
-          (planet.ring === "saturn" ? 2.4 : planet.ring === "uranus" ? 2.0 : 1);
 
         built.push({
           planet,
@@ -711,69 +704,50 @@ export default function Orrery3D({
           spin: mesh,
           clouds,
           radius,
-          labelRadius,
           marker,
-          label: null as unknown as HTMLButtonElement,
         });
       });
 
-      /* ---------------- labels ---------------- */
-      const labelButtons = new Map<string, HTMLButtonElement>();
-      planets.forEach((planet) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "orrery-label";
-        button.dataset.slug = planet.slug;
-        button.style.setProperty("--label-accent", planet.accent);
-        const dot = document.createElement("span");
-        dot.className = "orrery-label-dot";
-        const text = document.createElement("span");
-        text.textContent = planet.name;
-        button.append(dot, text);
-        button.setAttribute(
-          "aria-label",
-          `Explore ${planet.name}, orbital period ${planet.periodLabel}`,
-        );
-        button.addEventListener("click", () => onPickRef.current(planet.slug));
-        button.addEventListener("pointerenter", () => {
-          hoverRef.current = true;
-          button.classList.add("is-hover");
-        });
-        button.addEventListener("pointerleave", () => {
-          hoverRef.current = false;
-          button.classList.remove("is-hover");
-        });
-        button.addEventListener("focus", () => {
-          hoverRef.current = true;
-        });
-        button.addEventListener("blur", () => {
-          hoverRef.current = false;
-        });
-        labelLayer.appendChild(button);
-        labelButtons.set(planet.slug, button);
-        const record = built.find((item) => item.planet.slug === planet.slug);
-        if (record) record.label = button;
+      /* The Sun is a first-class pick target as well. */
+      const sunHitMaterial = new THREE.MeshBasicMaterial({
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+        colorWrite: false,
       });
+      const sunHit = new THREE.Mesh(unitSphere, sunHitMaterial);
+      sunHit.scale.setScalar(SUN_RADIUS * 1.35);
+      sunHit.userData.slug = "sun";
+      scene.add(sunHit);
+      hitTargets.push(sunHit);
+      disposables.push(sunHitMaterial);
 
-      const sunLabel = document.createElement("span");
-      sunLabel.className = "orrery-label orrery-label-sun";
-      sunLabel.innerHTML = '<span class="orrery-label-dot"></span><span>Sun</span>';
-      sunLabel.setAttribute("aria-hidden", "true");
-      labelLayer.appendChild(sunLabel);
+      const sunMarker = new THREE.Sprite(
+        new THREE.SpriteMaterial({
+          map: markerTexture,
+          transparent: true,
+          opacity: 0.9,
+          depthWrite: false,
+          depthTest: false,
+          blending: THREE.AdditiveBlending,
+        }),
+      );
+      sunMarker.scale.setScalar(SUN_RADIUS * 4.2);
+      sunMarker.visible = false;
+      sunMarker.renderOrder = 3;
+      sunMarker.position.set(0, 0, 0);
+      scene.add(sunMarker);
+      disposables.push(sunMarker.material);
 
       /* ---------------- selection ---------------- */
       applySelectionRef.current = (slug: string) => {
         orbitLines.forEach((material, key) => {
-          material.opacity = key === slug ? 0.75 : 0.34;
-          material.color.setHex(key === slug ? 0xdcdcdc : 0xc1c1c1);
+          material.opacity = key === slug ? 0.62 : 0.26;
+          material.color.setHex(key === slug ? 0xdcdcdc : 0xbdbdbd);
         });
+        sunMarker.visible = slug === "sun";
         built.forEach((item) => {
           item.marker.visible = item.planet.slug === slug;
-          item.label.classList.toggle("is-selected", item.planet.slug === slug);
-          item.label.setAttribute(
-            "aria-pressed",
-            item.planet.slug === slug ? "true" : "false",
-          );
         });
       };
       applySelectionRef.current(selectedRef.current);
@@ -879,8 +853,11 @@ export default function Orrery3D({
         hovered = slug;
         hoverRef.current = Boolean(slug);
         canvas.style.cursor = slug ? "pointer" : "grab";
-        labelButtons.forEach((button) => {
-          button.classList.toggle("is-hover", button.dataset.slug === slug);
+        sunMarker.visible = selectedRef.current === "sun" || slug === "sun";
+        built.forEach((item) => {
+          item.marker.visible =
+            item.planet.slug === selectedRef.current ||
+            item.planet.slug === slug;
         });
       };
 
@@ -939,14 +916,8 @@ export default function Orrery3D({
         simDays = (Date.now() - J2000_MS) / DAY_MS;
       };
 
-      const projectPoint = new THREE.Vector3();
-      const topPoint = new THREE.Vector3();
-      const sunProjected = new THREE.Vector3();
-      const sunTopProjected = new THREE.Vector3();
-
       let frame = 0;
       let last = performance.now();
-      let labelsTimer = 0;
 
       const update = (now: number) => {
         const dt = Math.min((now - last) / 1000, 0.1);
@@ -954,11 +925,7 @@ export default function Orrery3D({
 
         if (modeRef.current === "live") {
           simDays = (Date.now() - J2000_MS) / DAY_MS;
-        } else if (
-          modeRef.current === "play" &&
-          !hoverRef.current &&
-          !reduced
-        ) {
+        } else if (modeRef.current === "play" && !reduced) {
           simDays += dt * (EARTH_YEAR_DAYS / 40) * speedRef.current;
         }
 
@@ -1015,91 +982,9 @@ export default function Orrery3D({
         arcGeometry.attributes.position.needsUpdate = true;
         arcGeometry.computeBoundingSphere();
 
-        /* project labels (throttled) */
-        labelsTimer += dt;
-        if (labelsTimer > 0.05) {
-          labelsTimer = 0;
-          const rect = canvas.getBoundingClientRect();
-          const placed: Array<{ x: number; y: number }> = [];
-          const fits = (x: number, y: number, width: number, height: number) =>
-            x - width / 2 > 0 &&
-            x + width / 2 < rect.width &&
-            y - height / 2 > 0 &&
-            y + height / 2 < rect.height &&
-            !placed.some(
-              (spot) => Math.abs(spot.x - x) < 62 && Math.abs(spot.y - y) < 18,
-            );
-
-          sunProjected.set(0, 0, 0).project(camera);
-          sunTopProjected.set(0, SUN_RADIUS, 0).project(camera);
-          const sunX = (sunProjected.x * 0.5 + 0.5) * rect.width;
-          const sunY = (-sunProjected.y * 0.5 + 0.5) * rect.height;
-
-          built.forEach((item) => {
-            projectPoint.copy(item.pivot.position).project(camera);
-            topPoint
-              .copy(item.pivot.position)
-              .setY(item.pivot.position.y + item.labelRadius)
-              .project(camera);
-            const rawX = (projectPoint.x * 0.5 + 0.5) * rect.width;
-            const rawY = (-projectPoint.y * 0.5 + 0.5) * rect.height;
-            /* push the label outward, away from the Sun, so the crowded
-               inner worlds name themselves in different directions */
-            const dx = rawX - sunX;
-            const dy = rawY - sunY;
-            const length = Math.hypot(dx, dy) || 1;
-            const dirX = dx / length;
-            const dirY = dy / length;
-            const width = item.label.offsetWidth;
-            const height = item.label.offsetHeight;
-            const gap =
-              Math.abs(topPoint.y - projectPoint.y) * rect.height * 0.5 +
-              12 +
-              Math.abs(dirX) * width * 0.5 +
-              Math.abs(dirY) * height * 0.5;
-            let x = rawX + dirX * gap;
-            let y = rawY + dirY * gap;
-            for (let pass = 0; pass < 8 && !fits(x, y, width, height); pass += 1) {
-              x += dirX * 13;
-              y += dirY * 13;
-            }
-            if (!fits(x, y, width, height)) {
-              x = rawX + dirX * gap;
-              y = rawY - Math.abs(dirY) * gap - height * 0.5 - 6;
-            }
-            x = Math.max(width / 2 + 4, Math.min(rect.width - width / 2 - 4, x));
-            y = Math.max(height / 2 + 4, Math.min(rect.height - height / 2 - 4, y));
-            /* Clamping can force two labels onto the same edge. Walk them
-               apart vertically until each has its own room. */
-            let tries = 0;
-            while (fits(x, y, width, height) === false && tries < 14) {
-              const step = (Math.floor(tries / 2) + 1) * 19;
-              y += tries % 2 === 0 ? -step : step;
-              y = Math.max(
-                height / 2 + 4,
-                Math.min(rect.height - height / 2 - 4, y),
-              );
-              tries += 1;
-            }
-            placed.push({ x, y });
-            item.label.style.left = `${x}px`;
-            item.label.style.top = `${y}px`;
-          });
-
-          const sunHalf = sunLabel.offsetWidth / 2;
-          const sunHeight = sunLabel.offsetHeight;
-          const sunLabelX = Math.max(
-            sunHalf + 4,
-            Math.min(rect.width - sunHalf - 4, sunX),
-          );
-          let sunLabelY =
-            sunY -
-            Math.abs(sunTopProjected.y - sunProjected.y) * rect.height * 0.5 -
-            sunHeight / 2 -
-            12;
-          sunLabelY = Math.max(sunHeight / 2 + 4, sunLabelY);
-          sunLabel.style.left = `${sunLabelX}px`;
-          sunLabel.style.top = `${sunLabelY}px`;
+        if (sunMarker.visible) {
+          const pulse = 1 + Math.sin(now * 0.003) * 0.06;
+          sunMarker.scale.setScalar(SUN_RADIUS * 4.2 * pulse);
         }
 
         /* clock */
@@ -1126,7 +1011,6 @@ export default function Orrery3D({
         canvas.removeEventListener("pointerup", onPointerUp);
         canvas.removeEventListener("pointercancel", onPointerUp);
         canvas.removeEventListener("pointerleave", onPointerLeave);
-        labelLayer.replaceChildren();
         renderer.dispose();
         disposables.forEach((item) => item.dispose());
         canvas.remove();
@@ -1159,8 +1043,8 @@ export default function Orrery3D({
   }, []);
 
   const handleReset = useCallback(() => {
-    setSpeed(1);
-    setMode("live");
+    setSpeed(2);
+    setMode("play");
     resetRef.current();
   }, []);
 
@@ -1234,7 +1118,6 @@ export default function Orrery3D({
         aria-label="Interactive three-dimensional model of the Solar System. Drag to orbit the camera, and choose a planet to open its dossier."
       >
         <div className="orrery-canvas-mount" ref={mountRef} />
-        <div className="orrery-labels" ref={labelRef} />
         <span className="stage-hint" aria-hidden="true">
           Drag to orbit · Click a world
         </span>
@@ -1285,20 +1168,33 @@ export default function Orrery3D({
           </div>
         </dl>
         <p className="earth-live-note">
-          Earth carries you 2.57 million km around the Sun every day. The mint
-          arc on its orbit traces the year since perihelion. Real time is on by
-          default — choose a speed to watch the year unfold, or press{" "}
-          <strong>Real time</strong> to return to this exact moment.
+          Earth carries you 2.57 million km around the Sun every day. The
+          silver arc on its orbit traces the year since perihelion. The map
+          opens at ×2 — press <strong>Real time</strong> to lock every world to
+          this exact moment.
         </p>
       </div>
 
       <div className="orrery-footer">
         <p className="orbit-caption">
           Orbital periods keep their true ratios; distances are square-root
-          compressed so Neptune stays in frame. The map opens at today&rsquo;s
-          true ephemeris. Drag the map to look around.
+          compressed so Neptune stays in frame. The map opens at ×2, a step
+          ahead of today&rsquo;s true positions. Drag to look around.
         </p>
-        <div className="planet-picker" role="group" aria-label="Jump to a planet">
+        <div className="planet-picker" role="group" aria-label="Jump to a world">
+          <button
+            type="button"
+            className={`picker-button${selectedSlug === "sun" ? " active" : ""}`}
+            onClick={() => onPick("sun")}
+            aria-pressed={selectedSlug === "sun"}
+          >
+            <span
+              className="picker-dot"
+              style={{ background: "rgba(236, 236, 236, 0.85)" }}
+              aria-hidden="true"
+            />
+            Sun
+          </button>
           {planets.map((planet) => (
             <button
               type="button"

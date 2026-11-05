@@ -290,6 +290,51 @@ const PLANETS: Planet[] = [
   },
 ];
 
+const SUN: Planet = {
+  name: "Sun",
+  slug: "sun",
+  type: "G-type main-sequence star",
+  tagline: "The star that holds every orbit in place.",
+  description:
+    "The Sun is a middle-aged yellow dwarf, about 4.6 billion years old and holding 99.86% of the Solar System's mass. In its core, roughly 600 million tonnes of hydrogen fuse into helium every second — the reaction that lights eight worlds and makes life on Earth possible.",
+  highlight:
+    "Light leaves the Sun's surface and reaches Earth in 8 minutes 20 seconds.",
+  distanceAu: 0,
+  distanceKm: "149.6 million km from Earth",
+  periodDays: 0,
+  periodLabel: "~230 million years (galactic orbit)",
+  diameterKm: "1,391,400",
+  dayLength: "25.4 Earth days at the equator",
+  moons: "8 planets",
+  gravity: "274 m/s²",
+  temp: "5,505 °C surface · 15 million °C core",
+  axialTilt: "7.25°",
+  atmosphere: "Hydrogen 73%, helium 25%, trace metals",
+  science:
+    "The Sun's magnetic field reverses roughly every 11 years, driving sunspot cycles, solar flares and coronal mass ejections. The Parker Solar Probe has flown inside the corona to study how the solar wind is born.",
+  accent: "rgba(214, 214, 214, 0.6)",
+  texture: "/textures/2k_sun.jpg",
+  spin: 40,
+  dot: 4,
+  orbit: 0,
+  startAngle: 0,
+};
+
+const BODIES: Planet[] = [SUN, ...PLANETS];
+
+/* A faint tint per body for the ambient glow behind the dossier. */
+const TINTS: Record<string, string> = {
+  sun: "255, 214, 150",
+  mercury: "170, 160, 150",
+  venus: "224, 200, 150",
+  earth: "110, 160, 220",
+  mars: "214, 120, 92",
+  jupiter: "206, 176, 132",
+  saturn: "226, 208, 156",
+  uranus: "150, 208, 214",
+  neptune: "110, 142, 214",
+};
+
 const SCIENCE_FIELDS = [
   {
     index: "01",
@@ -556,6 +601,10 @@ function CosmicBackground() {
     let dust: Dust[] = [];
     let meteors: Meteor[] = [];
     let nextMeteor = 4;
+    let targetX = 0;
+    let targetY = 0;
+    let offsetX = 0;
+    let offsetY = 0;
 
     const makeGlow = (color: string) => {
       const sprite = document.createElement("canvas");
@@ -624,14 +673,17 @@ function CosmicBackground() {
 
     const drawStar = (star: Star, index: number) => {
       const scroll = window.scrollY || 0;
-      const x =
+      const baseX =
         (((star.x * width + time * star.drift * width) % width) + width) %
         width;
-      const y =
+      const baseY =
         ((((star.y * height + scroll * 0.035 * star.depth) %
           height) +
           height) %
           height);
+      /* The field leans away from the cursor; nearer stars travel further. */
+      const x = baseX + offsetX * 54 * star.depth;
+      const y = baseY + offsetY * 42 * star.depth;
       const pulse = reduced
         ? 0.78
         : 0.5 + 0.5 * Math.sin(time * star.twinkle + star.phase);
@@ -700,16 +752,18 @@ function CosmicBackground() {
       context.clearRect(0, 0, width, height);
 
       dust.forEach((particle) => {
-        const x =
+        const baseX =
           (((particle.x * width + time * particle.drift * width) % width) +
             width) %
           width;
-        const y =
+        const baseY =
           ((((particle.y * height +
             (window.scrollY || 0) * 0.012) %
             height) +
             height) %
             height);
+        const x = baseX + offsetX * 20;
+        const y = baseY + offsetY * 14;
         context.globalAlpha = particle.alpha;
         context.drawImage(
           dustSprites[particle.hue],
@@ -729,6 +783,8 @@ function CosmicBackground() {
 
     const animate = () => {
       time += 0.016;
+      offsetX += (targetX - offsetX) * 0.055;
+      offsetY += (targetY - offsetY) * 0.055;
       if (time > nextMeteor) {
         const fromLeft = Math.random() > 0.5;
         const startX = fromLeft
@@ -767,11 +823,23 @@ function CosmicBackground() {
     resize();
     draw();
     if (!reduced) frame = window.requestAnimationFrame(animate);
+    const onPointerMove = (event: PointerEvent) => {
+      targetX = event.clientX / Math.max(width, 1) - 0.5;
+      targetY = event.clientY / Math.max(height, 1) - 0.5;
+    };
+    const onPointerLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
     window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave);
 
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
     };
   }, []);
 
@@ -843,9 +911,10 @@ function PlanetDetail({
   onSelect: (planet: Planet, scroll: boolean) => void;
   detailRef: RefObject<HTMLElement | null>;
 }) {
-  const index = PLANETS.findIndex((item) => item.slug === planet.slug);
-  const previous = PLANETS[(index - 1 + PLANETS.length) % PLANETS.length];
-  const next = PLANETS[(index + 1) % PLANETS.length];
+  const index = BODIES.findIndex((item) => item.slug === planet.slug);
+  const previous = BODIES[(index - 1 + BODIES.length) % BODIES.length];
+  const next = BODIES[(index + 1) % BODIES.length];
+  const isSun = planet.slug === "sun";
 
   return (
     <article
@@ -866,7 +935,7 @@ function PlanetDetail({
 
       <div className="detail-copy" key={planet.slug}>
         <div className="detail-topline">
-          <span>World {String(index + 1).padStart(2, "0")} / 08</span>
+          <span>{isSun ? "The centre · 01 / 09" : `World ${String(index).padStart(2, "0")} / 08`}</span>
           <span className="detail-type">{planet.type}</span>
         </div>
 
@@ -879,26 +948,41 @@ function PlanetDetail({
         </p>
 
         <div className="fact-grid">
-          <div className="fact">
-            <span>Mean distance</span>
-            <strong>
-              {planet.distanceAu} AU · {planet.distanceKm}
-            </strong>
-          </div>
-          <div className="fact">
-            <span>Orbital period</span>
-            <strong>{planet.periodLabel}</strong>
-          </div>
+          {isSun ? (
+            <>
+              <div className="fact">
+                <span>Distance from Earth</span>
+                <strong>1 AU · {planet.distanceKm}</strong>
+              </div>
+              <div className="fact">
+                <span>Galactic orbit</span>
+                <strong>{planet.periodLabel}</strong>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="fact">
+                <span>Mean distance</span>
+                <strong>
+                  {planet.distanceAu} AU · {planet.distanceKm}
+                </strong>
+              </div>
+              <div className="fact">
+                <span>Orbital period</span>
+                <strong>{planet.periodLabel}</strong>
+              </div>
+            </>
+          )}
           <div className="fact">
             <span>Diameter</span>
             <strong>{planet.diameterKm} km</strong>
           </div>
           <div className="fact">
-            <span>Day length</span>
+            <span>{isSun ? "Rotation" : "Day length"}</span>
             <strong>{planet.dayLength}</strong>
           </div>
           <div className="fact">
-            <span>Moons</span>
+            <span>{isSun ? "Planets" : "Moons"}</span>
             <strong>{planet.moons}</strong>
           </div>
           <div className="fact">
@@ -906,7 +990,7 @@ function PlanetDetail({
             <strong>{planet.gravity}</strong>
           </div>
           <div className="fact">
-            <span>Mean temperature</span>
+            <span>{isSun ? "Surface temperature" : "Mean temperature"}</span>
             <strong>{planet.temp}</strong>
           </div>
           <div className="fact">
@@ -914,7 +998,7 @@ function PlanetDetail({
             <strong>{planet.axialTilt}</strong>
           </div>
           <div className="fact fact-atmosphere">
-            <span>Atmosphere</span>
+            <span>{isSun ? "Composition" : "Atmosphere"}</span>
             <strong>{planet.atmosphere}</strong>
           </div>
         </div>
@@ -997,7 +1081,7 @@ function ScrollChrome() {
 /* ------------------------------------------------------------------ */
 
 export default function Home() {
-  const [selected, setSelected] = useState<Planet>(PLANETS[2]);
+  const [selected, setSelected] = useState<Planet>(BODIES[3]);
   const detailRef = useRef<HTMLElement>(null);
 
   const handleSelect = useCallback(
@@ -1056,6 +1140,12 @@ export default function Home() {
     <>
       <ScrollChrome />
       <CosmicBackground />
+      <div
+        className="body-ambience"
+        key={selected.slug}
+        style={{ "--ambient": TINTS[selected.slug] ?? "255, 255, 255" } as Vars}
+        aria-hidden="true"
+      />
 
       <header className="site-header">
         <a className="wordmark" href="#home" aria-label="TARA home">
@@ -1175,8 +1265,8 @@ export default function Home() {
                 planets={PLANETS}
                 selectedSlug={selected.slug}
                 onPick={(slug) => {
-                  const planet = PLANETS.find((item) => item.slug === slug);
-                  if (planet) handleSelect(planet, true);
+                  const body = BODIES.find((item) => item.slug === slug);
+                  if (body) handleSelect(body, true);
                 }}
               />
             </div>
