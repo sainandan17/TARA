@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Sora:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;500;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/redaction/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/redaction/700.css");
 
 :root {
   color-scheme: dark;
@@ -14,9 +16,9 @@
   --gold: #cdcdcd;
   --blue: #b8b8b8;
   --panel: rgba(7, 7, 7, 0.66);
-  --serif: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --sans: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --display: "Sora", "Manrope", "Segoe UI", system-ui, sans-serif;
+  --serif: "Cormorant Garamond", Garamond, Georgia, serif;
+  --sans: "Cormorant Garamond", Garamond, Georgia, serif;
+  --display: "Redaction", "Cormorant Garamond", Georgia, serif;
   --brand: "Cinzel", "Trajan Pro", Georgia, serif;
 }
 
