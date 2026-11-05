@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="star" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cfe0ff"/>
+      <stop offset="100%" stop-color="#4a8bf5"/>
+    </linearGradient>
+  </defs>
   <rect width="64" height="64" rx="14" fill="#000"/>
-  <circle cx="32" cy="32" r="19" fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="1.2"/>
-  <path d="M32 13c1.9 9.4 5.6 13.1 15 15-9.4 1.9-13.1 5.6-15 15-1.9-9.4-5.6-13.1-15-15 9.4-1.9 13.1-5.6 15-15Z" fill="#fff"/>
-  <circle cx="47.5" cy="46.5" r="2.2" fill="#fff"/>
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#6aa3ff" stroke-opacity="0.5" stroke-width="1.2"/>
+  <path d="M32 13c1.9 9.4 5.6 13.1 15 15-9.4 1.9-13.1 5.6-15 15-1.9-9.4-5.6-13.1-15-15 9.4-1.9 13.1-5.6 15-15Z" fill="url(#star)"/>
+  <circle cx="47.5" cy="46.5" r="2.2" fill="#ecc982"/>
 </svg>

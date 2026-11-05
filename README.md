@@ -2,7 +2,7 @@
 
 An interactive field guide to the universe: a live 3D orrery of the solar system, planet dossiers, the scale of everything, cosmology and open questions in astronomy, astrophysics and astrobiology.
 
-Built with Next.js 15, React 19, TypeScript and three.js. The interface uses a strict monochrome black palette; planet textures are rendered in greyscale.
+Built with Next.js 15, React 19, TypeScript and three.js. The interface uses a deep black canvas with a blue primary and amber accent palette; planets are shown in their true colours. Type is set in Space Grotesk (headings) and IBM Plex Sans (body).
 
 ## Getting started
 

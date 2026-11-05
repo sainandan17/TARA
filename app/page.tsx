@@ -72,7 +72,7 @@ const PLANETS: Planet[] = [
       "A thin exosphere of oxygen, sodium, hydrogen, helium and potassium.",
     science:
       "MESSENGER mapped the planet and found water ice hiding in permanently shadowed polar craters, likely delivered by comets and asteroids.",
-    accent: "rgba(183, 183, 183, 0.45)",
+    accent: "rgba(202, 180, 154, 0.45)",
     texture: "/textures/2k_mercury.jpg",
     spin: 58,
     dot: 1.35,
@@ -102,7 +102,7 @@ const PLANETS: Planet[] = [
       "96.5% carbon dioxide, 3.5% nitrogen, with clouds of sulfuric acid.",
     science:
       "Venus is a natural laboratory for runaway greenhouse warming. Its surface pressure is about 92 times Earth's — equivalent to 900 m underwater on Earth.",
-    accent: "rgba(203, 203, 203, 0.5)",
+    accent: "rgba(245, 198, 122, 0.5)",
     texture: "/textures/2k_venus_atmosphere.jpg",
     spin: 82,
     dot: 1.8,
@@ -131,7 +131,7 @@ const PLANETS: Planet[] = [
       "78% nitrogen, 21% oxygen, 0.9% argon and 0.04% carbon dioxide.",
     science:
       "Earth's magnetic field and ozone layer shield the biosphere from charged particles and ultraviolet radiation — two reasons our planet remains habitable.",
-    accent: "rgba(171, 171, 171, 0.6)",
+    accent: "rgba(110, 180, 255, 0.6)",
     texture: "/textures/2k_earth_daymap.jpg",
     spin: 34,
     dot: 1.95,
@@ -161,7 +161,7 @@ const PLANETS: Planet[] = [
       "95% carbon dioxide, 2.8% nitrogen, 2% argon and traces of oxygen.",
     science:
       "Orbiters and rovers have found ancient riverbeds, clay minerals and subsurface ice. Mars is a prime target in the search for past life.",
-    accent: "rgba(143, 143, 143, 0.55)",
+    accent: "rgba(235, 122, 86, 0.55)",
     texture: "/textures/2k_mars.jpg",
     spin: 36,
     dot: 1.55,
@@ -190,7 +190,7 @@ const PLANETS: Planet[] = [
       "About 90% hydrogen and 10% helium, with traces of methane and ammonia.",
     science:
       "Jupiter's moon Europa hides a global salt-water ocean beneath its icy crust. Tidal heating from Jupiter keeps that ocean liquid — a leading target in astrobiology.",
-    accent: "rgba(187, 187, 187, 0.45)",
+    accent: "rgba(226, 181, 132, 0.45)",
     texture: "/textures/2k_jupiter.jpg",
     spin: 22,
     dot: 3.3,
@@ -220,7 +220,7 @@ const PLANETS: Planet[] = [
       "About 96% hydrogen and 3% helium, with traces of methane and ammonia.",
     science:
       "Enceladus vents plumes of water vapour and organic molecules from a subsurface ocean, making this small moon one of astrobiology's most exciting destinations.",
-    accent: "rgba(215, 215, 215, 0.45)",
+    accent: "rgba(236, 214, 160, 0.45)",
     texture: "/textures/2k_saturn.jpg",
     spin: 24,
     dot: 2.9,
@@ -251,7 +251,7 @@ const PLANETS: Planet[] = [
       "About 83% hydrogen, 15% helium and 2% methane, which gives its blue-green colour.",
     science:
       "Uranus has 13 known rings and 28 moons. Its extreme tilt may be the result of a giant impact early in its history — one reason planetary scientists want to return with an orbiter.",
-    accent: "rgba(204, 204, 204, 0.5)",
+    accent: "rgba(128, 225, 225, 0.5)",
     texture: "/textures/2k_uranus.jpg",
     spin: 30,
     dot: 2.3,
@@ -281,7 +281,7 @@ const PLANETS: Planet[] = [
       "About 80% hydrogen, 19% helium and 1.5% methane, with high-altitude clouds.",
     science:
       "Neptune's largest moon, Triton, orbits backwards and may be a captured Kuiper Belt object. Its surface shows nitrogen geysers — evidence of active geology far from the Sun.",
-    accent: "rgba(149, 149, 149, 0.55)",
+    accent: "rgba(108, 150, 255, 0.55)",
     texture: "/textures/2k_neptune.jpg",
     spin: 28,
     dot: 2.2,
@@ -312,7 +312,7 @@ const SUN: Planet = {
   atmosphere: "Hydrogen 73%, helium 25%, trace metals",
   science:
     "The Sun's magnetic field reverses roughly every 11 years, driving sunspot cycles, solar flares and coronal mass ejections. The Parker Solar Probe has flown inside the corona to study how the solar wind is born.",
-  accent: "rgba(214, 214, 214, 0.6)",
+  accent: "rgba(255, 196, 110, 0.6)",
   texture: "/textures/2k_sun.jpg",
   spin: 40,
   dot: 4,
