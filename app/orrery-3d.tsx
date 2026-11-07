@@ -757,6 +757,9 @@ export default function Orrery3D({
       let userAzimuth = 0;
       let elevation = 0.66;
       let cameraDistance = 170;
+      let zoom = 1;
+      const MIN_ZOOM = 0.7;
+      const MAX_ZOOM = 7;
       let stageWidth = 0;
       let stageHeight = 0;
       let lastFitElevation = -10;
@@ -805,10 +808,11 @@ export default function Orrery3D({
 
       const placeCamera = () => {
         const cos = Math.cos(elevation);
+        const distance = cameraDistance / zoom;
         camera.position.set(
-          Math.sin(azimuth) * cos * cameraDistance,
-          Math.sin(elevation) * cameraDistance,
-          Math.cos(azimuth) * cos * cameraDistance,
+          Math.sin(azimuth) * cos * distance,
+          Math.sin(elevation) * distance,
+          Math.cos(azimuth) * cos * distance,
         );
         camera.lookAt(0, 0, 0);
         camera.updateMatrixWorld();
@@ -904,11 +908,26 @@ export default function Orrery3D({
         if (!dragging) canvas.style.cursor = "grab";
       };
 
+      /* Wheel zooms into the system; double-click eases back out. */
+      const onWheel = (event: WheelEvent) => {
+        event.preventDefault();
+        const factor = Math.exp(-event.deltaY * 0.0015);
+        zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom * factor));
+        placeCamera();
+      };
+
+      const onDoubleClick = () => {
+        zoom = 1;
+        placeCamera();
+      };
+
       canvas.addEventListener("pointerdown", onPointerDown);
       canvas.addEventListener("pointermove", onPointerMove);
       canvas.addEventListener("pointerup", onPointerUp);
       canvas.addEventListener("pointercancel", onPointerUp);
       canvas.addEventListener("pointerleave", onPointerLeave);
+      canvas.addEventListener("wheel", onWheel, { passive: false });
+      canvas.addEventListener("dblclick", onDoubleClick);
 
       /* ---------------- simulation ---------------- */
       let simDays = (Date.now() - J2000_MS) / DAY_MS;
@@ -1011,6 +1030,8 @@ export default function Orrery3D({
         canvas.removeEventListener("pointerup", onPointerUp);
         canvas.removeEventListener("pointercancel", onPointerUp);
         canvas.removeEventListener("pointerleave", onPointerLeave);
+        canvas.removeEventListener("wheel", onWheel);
+        canvas.removeEventListener("dblclick", onDoubleClick);
         renderer.dispose();
         disposables.forEach((item) => item.dispose());
         canvas.remove();
@@ -1119,7 +1140,7 @@ export default function Orrery3D({
       >
         <div className="orrery-canvas-mount" ref={mountRef} />
         <span className="stage-hint" aria-hidden="true">
-          Drag to orbit · Click a world
+          Drag to orbit · Scroll to zoom · Click a world
         </span>
         {!ready && !failed && (
           <div className="orrery-loading" aria-hidden="true">

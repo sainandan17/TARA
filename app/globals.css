@@ -679,9 +679,9 @@ a:focus-visible {
 
 .tara-ready .title-star {
   animation:
-    title-star-slide 2.7s linear 1.45s both,
-    title-star-travel 2.7s cubic-bezier(0.16, 1, 0.3, 1) 1.45s both,
-    title-star-pulse 3.4s ease-in-out 4.2s infinite;
+    title-star-slide 3.2s linear 1.45s both,
+    title-star-travel 3.2s linear 1.45s both,
+    title-star-pulse 5.2s ease-in-out 4.8s infinite;
 }
 
 .title-star-core {
@@ -693,24 +693,6 @@ a:focus-visible {
     0 0 8px 2px rgba(255, 255, 255, 0.95),
     0 0 24px 8px rgba(119, 169, 251, 0.7),
     0 0 58px 18px rgba(38, 108, 220, 0.34);
-}
-
-.title-star-tail {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  width: clamp(36px, 7vw, 100px);
-  height: 2px;
-  transform: translateY(-50%);
-  transform-origin: 100% 50%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(198, 220, 254, 0.92));
-  filter: blur(0.3px);
-  opacity: 0;
-}
-
-.tara-ready .title-star-tail {
-  animation: title-tail 2.7s cubic-bezier(0.16, 1, 0.3, 1) 1.45s both;
 }
 
 .title-star-burst {
@@ -1035,81 +1017,6 @@ a:focus-visible {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.orrery-labels {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.orrery-label {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 6px;
-  border: 0;
-  background: transparent;
-  color: #adbcd3;
-  font-family: var(--sans);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
-  opacity: 0.92;
-  cursor: pointer;
-  pointer-events: auto;
-  transform: translate(-50%, -50%);
-  transition:
-    color 180ms ease,
-    opacity 180ms ease;
-}
-
-.orrery-label-dot {
-  width: 4px;
-  height: 4px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--label-accent, #9fabbf);
-  box-shadow: 0 0 7px var(--label-accent, #9fabbf);
-}
-
-.orrery-label:hover,
-.orrery-label.is-hover,
-.orrery-label.is-selected {
-  color: #f1f6ff;
-  opacity: 1;
-}
-
-.orrery-label:focus-visible {
-  outline: 1px solid rgba(163, 198, 253, 0.6);
-  outline-offset: 2px;
-}
-
-.orrery-label.is-selected .orrery-label-dot {
-  box-shadow:
-    0 0 8px 1px var(--label-accent),
-    0 0 18px 3px var(--label-accent);
-}
-
-.orrery-label-sun {
-  color: #dcc084;
-  font-size: 8px;
-  letter-spacing: 0.24em;
-  opacity: 0.8;
-  cursor: default;
-  pointer-events: none;
-}
-
-.orrery-label-sun .orrery-label-dot {
-  background: #f2d698;
-  box-shadow: 0 0 9px rgba(239, 204, 127, 0.9);
 }
 
 .stage-hint {
@@ -1485,7 +1392,7 @@ a:focus-visible {
 }
 
 .globe-mini {
-  width: 48px;
+  width: calc(var(--g, 48) * 1px);
 }
 
 .planet-globe {
@@ -1699,8 +1606,8 @@ a:focus-visible {
 
 .fact span {
   display: block;
-  color: #5b78ab;
-  font-size: 8px;
+  color: #6b86b5;
+  font-size: 8.5px;
   letter-spacing: 0.13em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -1710,7 +1617,7 @@ a:focus-visible {
   display: block;
   margin-top: 4px;
   color: #d5dfef;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -1737,6 +1644,42 @@ a:focus-visible {
   color: #98a1b0;
   font-size: 10.5px;
   line-height: 1.8;
+}
+
+.fun-fact {
+  margin-top: 12px;
+  padding: 13px 17px 15px;
+  border: 1px solid rgba(130, 177, 252, 0.11);
+  border-radius: 2px;
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(74, 139, 245, 0.1), transparent 62%),
+    rgba(7, 10, 16, 0.6);
+}
+
+.fun-fact-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold);
+  font-size: 7.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.fun-fact-label span {
+  color: var(--violet);
+  font-size: 9px;
+  line-height: 1;
+}
+
+.fun-fact p {
+  margin: 7px 0 0;
+  color: #c6d4ea;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 .detail-nav {
@@ -2664,17 +2607,32 @@ a:focus-visible {
   }
 }
 
-/* The title star launches out of the T, arcs above the word, and drops
-   onto the crown of the final A. Horizontal travel runs on its own
-   linear track so the arc keeps a steady speed while the vertical
-   track uses gravity easing. */
+/* The title star hops from the T to the first A, the R, and finally the
+   last A, settling on its crown. Each segment eases horizontally so the
+   star pauses over a letter as it touches down. */
 @keyframes title-star-slide {
-  from {
-    left: 14.6%;
+  0% {
+    left: 15%;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
 
-  to {
-    left: 83.8%;
+  25% {
+    left: 37%;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+
+  50% {
+    left: 60%;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+
+  75% {
+    left: 83%;
+    animation-timing-function: linear;
+  }
+
+  100% {
+    left: 83%;
   }
 }
 
@@ -2683,53 +2641,95 @@ a:focus-visible {
     opacity: 0;
     translate: 0 0;
     transform: translate(-50%, -50%) scale(0.16);
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 
-  5% {
+  3% {
     opacity: 1;
-    translate: 0 -0.16em;
-    transform: translate(-50%, -50%) scale(1.28);
-    animation-timing-function: cubic-bezier(0.1, 0.55, 0.32, 1);
+    translate: 0 -0.15em;
+    transform: translate(-50%, -50%) scale(1.16);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 
-  16% {
+  12.5% {
     opacity: 1;
-    translate: 0 -0.31em;
+    translate: 0 -0.34em;
     transform: translate(-50%, -50%) scale(1);
-    animation-timing-function: cubic-bezier(0.22, 0.42, 0.5, 1);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+
+  22% {
+    translate: 0 -0.16em;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+
+  25% {
+    translate: 0 -0.1045em;
+    transform: translate(-50%, -50%) scale(1.24, 0.76);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.35, 1);
+  }
+
+  30% {
+    translate: 0 -0.15em;
+    transform: translate(-50%, -50%) scale(0.99, 1.02);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  37.5% {
+    translate: 0 -0.34em;
+    transform: translate(-50%, -50%) scale(1);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+
+  47% {
+    translate: 0 -0.16em;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
   }
 
   50% {
-    translate: 0 -0.38em;
-    animation-timing-function: cubic-bezier(0.5, 0, 0.88, 0.42);
-  }
-
-  78% {
-    translate: 0 -0.22em;
-    animation-timing-function: cubic-bezier(0.58, 0, 0.9, 0.4);
-  }
-
-  87% {
-    translate: 0 -0.11em;
-    animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.5);
-  }
-
-  90% {
     translate: 0 -0.1045em;
-    transform: translate(-50%, -50%) scale(1.42, 0.66);
-    animation-timing-function: cubic-bezier(0.18, 0.78, 0.36, 1);
+    transform: translate(-50%, -50%) scale(1.24, 0.76);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.35, 1);
   }
 
-  94% {
-    translate: 0 -0.165em;
-    transform: translate(-50%, -50%) scale(0.96, 1.05);
+  55% {
+    translate: 0 -0.15em;
+    transform: translate(-50%, -50%) scale(0.99, 1.02);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  62.5% {
+    translate: 0 -0.34em;
+    transform: translate(-50%, -50%) scale(1);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.4);
+  }
+
+  72% {
+    translate: 0 -0.16em;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+
+  75% {
+    translate: 0 -0.1045em;
+    transform: translate(-50%, -50%) scale(1.3, 0.72);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.35, 1);
+  }
+
+  80% {
+    translate: 0 -0.15em;
+    transform: translate(-50%, -50%) scale(0.97, 1.04);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  86% {
+    translate: 0 -0.098em;
+    transform: translate(-50%, -50%) scale(1.04, 0.96);
     animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.45);
   }
 
-  97% {
-    translate: 0 -0.096em;
-    transform: translate(-50%, -50%) scale(1.06, 0.95);
+  92% {
+    translate: 0 -0.11em;
+    transform: translate(-50%, -50%) scale(0.99, 1.01);
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
   }
 
@@ -2746,29 +2746,64 @@ a:focus-visible {
     transform: scale(0.2);
   }
 
-  6% {
-    opacity: 0.9;
-    transform: scale(0.9);
+  3% {
+    opacity: 0.7;
+    transform: scale(0.8);
   }
 
-  18% {
+  7% {
     opacity: 0;
-    transform: scale(3.4);
+    transform: scale(2.2);
   }
 
-  86% {
+  24% {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.55);
   }
 
-  90% {
+  25% {
     opacity: 0.85;
-    transform: scale(0.85);
+    transform: scale(0.7);
+  }
+
+  29% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+
+  49% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(0.7);
+  }
+
+  54% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+
+  74% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  75% {
+    opacity: 0.95;
+    transform: scale(0.8);
+  }
+
+  80% {
+    opacity: 0;
+    transform: scale(2.7);
   }
 
   100% {
     opacity: 0;
-    transform: scale(3.2);
+    transform: scale(0.6);
   }
 }
 
@@ -2784,49 +2819,6 @@ a:focus-visible {
     transform: translate(-50%, -50%) scale(0.78);
     opacity: 0.72;
     filter: drop-shadow(0 0 10px rgba(132, 178, 252, 0.8));
-  }
-}
-
-@keyframes title-tail {
-  0% {
-    opacity: 0;
-    transform: translateY(-50%) rotate(285deg) scaleX(0.3);
-  }
-
-  6% {
-    opacity: 1;
-    transform: translateY(-50%) rotate(292deg) scaleX(0.82);
-  }
-
-  16% {
-    opacity: 1;
-    transform: translateY(-50%) rotate(312deg) scaleX(1);
-  }
-
-  34% {
-    opacity: 1;
-    transform: translateY(-50%) rotate(340deg) scaleX(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateY(-50%) rotate(360deg) scaleX(1);
-  }
-
-  78% {
-    opacity: 0.92;
-    transform: translateY(-50%) rotate(396deg) scaleX(0.92);
-  }
-
-  87% {
-    opacity: 0.7;
-    transform: translateY(-50%) rotate(412deg) scaleX(0.66);
-  }
-
-  92%,
-  100% {
-    opacity: 0;
-    transform: translateY(-50%) rotate(420deg) scaleX(0.45);
   }
 }
 
@@ -3298,7 +3290,6 @@ a:focus-visible {
     opacity: 1;
   }
 
-  .title-star-tail,
   .title-star-burst {
     opacity: 0;
   }
@@ -3496,4 +3487,358 @@ h3,
   font-size: clamp(2rem, 4vw, 3.25rem);
   font-weight: 400;
   line-height: 1.12;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reading scale                                                      */
+/*  Cormorant Garamond runs small on screen; lift the body copy a      */
+/*  little and firm up its tracking without changing the typeface.     */
+/* ------------------------------------------------------------------ */
+
+.hero-lead {
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.section-intro {
+  max-width: 580px;
+  font-size: 15.5px;
+  line-height: 1.85;
+}
+
+.detail-description {
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.detail-highlight {
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.detail-focus p {
+  font-size: 12.5px;
+}
+
+.science-text {
+  font-size: 13.5px;
+  line-height: 1.8;
+}
+
+.science-card li {
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.science-card li::before {
+  top: 3px;
+}
+
+.science-note p {
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+.science-question {
+  font-size: 17px;
+}
+
+.cosmo-card p,
+.wonder-card > p:not(.wonder-tag),
+.timeline-what p,
+.dark-copy p:last-child {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.scale-copy p {
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
+.light-year-note {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.closing-copy {
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+
+.earth-live-note {
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+
+.orbit-caption,
+.data-note {
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.visual-caption {
+  font-size: 10.5px;
+}
+
+.hero-lead,
+.section-intro,
+.detail-description,
+.science-text,
+.science-card li,
+.cosmo-card p,
+.wonder-card > p:not(.wonder-tag),
+.timeline-what p,
+.closing-copy,
+.light-year-note {
+  letter-spacing: 0.006em;
+  font-weight: 400;
+}
+
+.hero-lead,
+.section-intro,
+.detail-description,
+.closing-copy {
+  color: #a7b4c9;
+}
+
+.science-text {
+  color: #93a8c9;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Planet size comparison                                             */
+/* ------------------------------------------------------------------ */
+
+.size-compare {
+  margin-top: 18px;
+  padding: clamp(16px, 2.2vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #070707;
+}
+
+.size-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.size-kicker {
+  margin: 0;
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.size-note {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.size-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(4px, 1.4vw, 18px);
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: none;
+}
+
+.size-row::-webkit-scrollbar {
+  display: none;
+}
+
+.size-item {
+  display: flex;
+  flex: 1 0 auto;
+  min-width: 44px;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 2px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.size-item:hover {
+  background: rgba(120, 160, 220, 0.06);
+}
+
+.size-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 105px;
+}
+
+.size-name {
+  color: #c4d0e4;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.size-item:hover .size-name,
+.size-item.active .size-name {
+  color: #ffffff;
+}
+
+.size-dia {
+  color: #5d6f8d;
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.size-item.active .size-slot {
+  filter: drop-shadow(0 0 12px rgba(120, 170, 255, 0.35));
+}
+
+/* The comparison spheres are small, so their glow must scale down too. */
+.size-item .planet-globe {
+  box-shadow:
+    0 0 22px -6px var(--atmo),
+    0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+.size-item .globe-texture {
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.size-item .globe-shading {
+  box-shadow:
+    inset -5px -4px 12px rgba(0, 0, 0, 0.42),
+    inset 3px 2px 7px rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.22), transparent 42%),
+    radial-gradient(circle at 74% 76%, rgba(0, 0, 0, 0.42), transparent 68%);
+}
+
+@media (max-width: 720px) {
+  .size-head {
+    display: block;
+  }
+
+  .size-note {
+    margin-top: 8px;
+  }
+
+  .size-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px 8px;
+    overflow: visible;
+  }
+
+  .size-item {
+    min-width: 0;
+    padding: 0;
+  }
+
+  .size-slot {
+    height: 70px;
+  }
+
+  .size-item .globe-mini {
+    width: calc(var(--g, 48) * 0.55px);
+  }
+
+  .size-dia {
+    display: none;
+  }
+
+  .size-name {
+    font-size: 8.5px;
+    letter-spacing: 0.06em;
+  }
+
+  .fun-fact {
+    margin-top: 10px;
+    padding: 12px 14px 14px;
+  }
+
+  .fun-fact p {
+    font-size: 15px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cursor-reactive backdrop                                           */
+/* ------------------------------------------------------------------ */
+
+.milky-band {
+  transform: translate3d(
+      calc(var(--pointer-x, 0) * 34px),
+      calc(var(--pointer-y, 0) * 24px),
+      0
+    )
+    scale(1.12) rotate(calc(var(--pointer-x, 0) * 1.6deg));
+  transition: transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milky-band {
+    transform: scale(1.06);
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cleaner name animation                                             */
+/* ------------------------------------------------------------------ */
+
+.title-spark {
+  display: none;
+}
+
+/* The star rests precisely above the final A of Cinzel's TARA. */
+.title-star {
+  left: 15%;
+}
+
+.tara-ready .title-star {
+  animation:
+    title-star-slide 3.2s linear 1.45s both,
+    title-star-travel 3.2s linear 1.45s both,
+    title-star-pulse 5.2s ease-in-out 4.8s infinite;
+}
+
+@keyframes title-star-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 0 rgba(192, 214, 255, 0));
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0.88);
+    opacity: 0.82;
+    filter: drop-shadow(0 0 9px rgba(192, 214, 255, 0.55));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-star {
+    left: 83%;
+  }
 }

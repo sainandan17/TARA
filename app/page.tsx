@@ -21,6 +21,7 @@ type Planet = {
   tagline: string;
   description: string;
   highlight: string;
+  funFact: string;
   distanceAu: number;
   distanceKm: string;
   periodDays: number;
@@ -58,6 +59,8 @@ const PLANETS: Planet[] = [
       "Mercury is the smallest planet and the nearest to the Sun. Its airless, cratered surface swings between blistering day and bitter night, while a huge iron core makes it surprisingly dense.",
     highlight:
       "One solar day on Mercury lasts about 176 Earth days — two Mercury years.",
+    funFact:
+      "Mercury is shrinking. As its iron core cools, the crust has wrinkled into cliff-like scarps hundreds of kilometres long.",
     distanceAu: 0.387,
     distanceKm: "57.9 million km",
     periodDays: 87.969,
@@ -88,6 +91,8 @@ const PLANETS: Planet[] = [
       "Venus is wrapped in a dense carbon-dioxide atmosphere and bright clouds of sulfuric acid. A runaway greenhouse effect keeps its surface hot enough to melt lead, even though it receives less sunlight than Mercury.",
     highlight:
       "Venus spins backwards, and one day is longer than its entire year.",
+    funFact:
+      "Venus is the brightest planet in our sky — bright enough to cast a faint shadow on Earth at night.",
     distanceAu: 0.723,
     distanceKm: "108.2 million km",
     periodDays: 224.701,
@@ -117,6 +122,8 @@ const PLANETS: Planet[] = [
     description:
       "Earth sits in the Sun's habitable zone, with liquid water on its surface, a protective magnetic field and an atmosphere rich in nitrogen and oxygen. Its climate and geology have been shaped by life for billions of years.",
     highlight: "About 71% of Earth's surface is covered by ocean.",
+    funFact:
+      "Earth bulges at the equator, so the summit of Chimborazo in Ecuador is the point farthest from the planet's centre.",
     distanceAu: 1,
     distanceKm: "149.6 million km",
     periodDays: 365.256,
@@ -147,6 +154,8 @@ const PLANETS: Planet[] = [
       "Mars is a dusty, iron-rich world with a thin atmosphere, ancient river valleys and the largest volcano in the Solar System. Its polar caps hold water ice and frozen carbon dioxide.",
     highlight:
       "Olympus Mons rises about 22 km — nearly three times the height of Everest.",
+    funFact:
+      "Olympus Mons is so broad that its slopes average only about 5°, gentle enough to walk up without climbing gear.",
     distanceAu: 1.524,
     distanceKm: "227.9 million km",
     periodDays: 686.98,
@@ -176,6 +185,8 @@ const PLANETS: Planet[] = [
     description:
       "Jupiter is more massive than all the other planets combined. Its banded clouds are drawn into powerful storms, and its gravity has shaped the orbits of asteroids and comets for billions of years.",
     highlight: "The Great Red Spot is a storm wider than the whole Earth.",
+    funFact:
+      "Jupiter spins so quickly that a day lasts under ten hours, visibly flattening the planet at its poles.",
     distanceAu: 5.203,
     distanceKm: "778.5 million km",
     periodDays: 4_332.59,
@@ -206,6 +217,8 @@ const PLANETS: Planet[] = [
       "Saturn is a hydrogen-and-helium giant encircled by a broad system of rings made mostly of water ice. Its low density means the planet would float in a sufficiently large ocean.",
     highlight:
       "Saturn's rings span about 282,000 km but are mostly under a kilometre thick.",
+    funFact:
+      "A six-sided jet stream wider than Earth sits over Saturn's north pole — a stable storm that has persisted for decades.",
     distanceAu: 9.537,
     distanceKm: "1.43 billion km",
     periodDays: 10_759.22,
@@ -237,6 +250,8 @@ const PLANETS: Planet[] = [
       "Uranus is a cold world of hydrogen, helium and methane, with a mantle of water, ammonia and methane ices. Its axis is tilted by about 98°, so it appears to roll around the Sun.",
     highlight:
       "Each pole spends about 42 Earth years in continuous sunlight, then 42 in darkness.",
+    funFact:
+      "Uranus holds the record for the coldest planetary atmosphere — about −224 °C, colder than more distant Neptune.",
     distanceAu: 19.191,
     distanceKm: "2.87 billion km",
     periodDays: 30_688.5,
@@ -267,6 +282,8 @@ const PLANETS: Planet[] = [
     description:
       "Neptune is the most distant major planet, a deep blue ice giant with supersonic winds and dark storms. It was the first planet found by mathematical prediction rather than by chance observation.",
     highlight: "Winds on Neptune can exceed 2,000 km/h.",
+    funFact:
+      "Neptune has completed just one orbit of the Sun since its discovery in 1846 — it finished the lap in 2011.",
     distanceAu: 30.07,
     distanceKm: "4.5 billion km",
     periodDays: 60_182,
@@ -299,6 +316,8 @@ const SUN: Planet = {
     "The Sun is a middle-aged yellow dwarf, about 4.6 billion years old and holding 99.86% of the Solar System's mass. In its core, roughly 600 million tonnes of hydrogen fuse into helium every second — the reaction that lights eight worlds and makes life on Earth possible.",
   highlight:
     "Light leaves the Sun's surface and reaches Earth in 8 minutes 20 seconds.",
+  funFact:
+    "A photon born in the Sun's core can take 100,000 years to escape to the surface — then only 8 minutes to reach Earth.",
   distanceAu: 0,
   distanceKm: "149.6 million km from Earth",
   periodDays: 0,
@@ -682,8 +701,8 @@ function CosmicBackground() {
           height) %
           height);
       /* The field leans away from the cursor; nearer stars travel further. */
-      const x = baseX + offsetX * 54 * star.depth;
-      const y = baseY + offsetY * 42 * star.depth;
+      const x = baseX + offsetX * 130 * star.depth;
+      const y = baseY + offsetY * 96 * star.depth;
       const pulse = reduced
         ? 0.78
         : 0.5 + 0.5 * Math.sin(time * star.twinkle + star.phase);
@@ -762,8 +781,8 @@ function CosmicBackground() {
             height) +
             height) %
             height);
-        const x = baseX + offsetX * 20;
-        const y = baseY + offsetY * 14;
+        const x = baseX + offsetX * 52;
+        const y = baseY + offsetY * 38;
         context.globalAlpha = particle.alpha;
         context.drawImage(
           dustSprites[particle.hue],
@@ -826,10 +845,16 @@ function CosmicBackground() {
     const onPointerMove = (event: PointerEvent) => {
       targetX = event.clientX / Math.max(width, 1) - 0.5;
       targetY = event.clientY / Math.max(height, 1) - 0.5;
+      const root = document.documentElement;
+      root.style.setProperty("--pointer-x", targetX.toFixed(4));
+      root.style.setProperty("--pointer-y", targetY.toFixed(4));
     };
     const onPointerLeave = () => {
       targetX = 0;
       targetY = 0;
+      const root = document.documentElement;
+      root.style.setProperty("--pointer-x", "0");
+      root.style.setProperty("--pointer-y", "0");
     };
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -862,14 +887,17 @@ function CosmicBackground() {
 function PlanetGlobe({
   planet,
   size = "detail",
+  pixelSize,
 }: {
   planet: Planet;
   size?: "detail" | "mini";
+  pixelSize?: number;
 }) {
   const style: Vars = {
     "--tex": `url("${planet.texture}")`,
     "--spin": `${planet.spin}s`,
     "--atmo": planet.accent,
+    ...(pixelSize ? { "--g": pixelSize } : {}),
   };
 
   return (
@@ -894,6 +922,58 @@ function PlanetGlobe({
       {planet.ring === "uranus" && (
         <span className="uranus-rings" aria-hidden="true" />
       )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Size comparison                                                    */
+/* ------------------------------------------------------------------ */
+
+const bodyDiameter = (body: Planet) =>
+  Number(body.diameterKm.replace(/[^0-9.]/g, "")) || 1;
+
+function SizeCompare({
+  selected,
+  onSelect,
+}: {
+  selected: string;
+  onSelect: (body: Planet) => void;
+}) {
+  const largest = Math.max(...PLANETS.map(bodyDiameter));
+
+  return (
+    <div className="size-compare reveal" data-delay="120">
+      <div className="size-head">
+        <p className="size-kicker">Relative scale</p>
+        <p className="size-note">
+          Eight planets at one relative scale. Sphere widths follow the square
+          root of each diameter, so Earth and Mercury stay visible beside
+          Jupiter.
+        </p>
+      </div>
+      <div className="size-row">
+        {PLANETS.map((body) => {
+          const ratio = Math.sqrt(bodyDiameter(body) / largest);
+          const px = Math.max(18, Math.round(ratio * 100));
+          return (
+            <button
+              key={body.slug}
+              type="button"
+              className={`size-item${selected === body.slug ? " active" : ""}`}
+              onClick={() => onSelect(body)}
+              aria-label={`Open the ${body.name} dossier`}
+              aria-pressed={selected === body.slug}
+            >
+              <span className="size-slot">
+                <PlanetGlobe planet={body} size="mini" pixelSize={px} />
+              </span>
+              <span className="size-name">{body.name}</span>
+              <span className="size-dia">{body.diameterKm} km</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -1006,6 +1086,13 @@ function PlanetDetail({
         <div className="detail-focus">
           <span className="focus-label">In focus</span>
           <p>{planet.science}</p>
+        </div>
+
+        <div className="fun-fact">
+          <span className="fun-fact-label">
+            <span aria-hidden="true">✦</span> Fun fact
+          </span>
+          <p>{planet.funFact}</p>
         </div>
 
         <div className="detail-nav">
@@ -1197,7 +1284,6 @@ export default function Home() {
                 <span className="title-star" aria-hidden="true">
                   <span className="title-star-burst" />
                   <span className="title-star-core" />
-                  <span className="title-star-tail" />
                 </span>
                 <span className="title-spark spark-1" aria-hidden="true" />
                 <span className="title-spark spark-2" aria-hidden="true" />
@@ -1270,6 +1356,11 @@ export default function Home() {
                 }}
               />
             </div>
+
+            <SizeCompare
+              selected={selected.slug}
+              onSelect={(body) => handleSelect(body, true)}
+            />
 
             <PlanetDetail
               planet={selected}
