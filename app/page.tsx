@@ -624,6 +624,9 @@ function CosmicBackground() {
     let targetY = 0;
     let offsetX = 0;
     let offsetY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let vigour = 1;
 
     const makeGlow = (color: string) => {
       const sprite = document.createElement("canvas");
@@ -700,13 +703,28 @@ function CosmicBackground() {
           height) +
           height) %
           height);
-      /* The field leans away from the cursor; nearer stars travel further. */
-      const x = baseX + offsetX * 130 * star.depth;
-      const y = baseY + offsetY * 96 * star.depth;
+      /* The field leans away from the cursor; nearer stars travel further,
+         and the whole drift quickens while the pointer is moving. */
+      let x = baseX + offsetX * 170 * star.depth * vigour;
+      let y = baseY + offsetY * 124 * star.depth * vigour;
+
+      /* Stars part around the pointer, like a small gravity well. */
+      const dx = x - cursorX;
+      const dy = y - cursorY;
+      const dist2 = dx * dx + dy * dy;
+      const wellRadius = 235;
+      let near = 0;
+      if (dist2 < wellRadius * wellRadius) {
+        const dist = Math.sqrt(dist2) || 0.001;
+        near = 1 - dist / wellRadius;
+        const push = near * near * 30 * (0.35 + star.depth);
+        x += (dx / dist) * push;
+        y += (dy / dist) * push;
+      }
       const pulse = reduced
         ? 0.78
         : 0.5 + 0.5 * Math.sin(time * star.twinkle + star.phase);
-      const alpha = 0.22 + pulse * 0.72;
+      const alpha = Math.min(1, (0.22 + pulse * 0.72) * (1 + near * 0.45));
       const color =
         star.tint > 0.88
           ? "209, 209, 209"
@@ -770,6 +788,10 @@ function CosmicBackground() {
     const draw = () => {
       context.clearRect(0, 0, width, height);
 
+      /* Where the pointer sits, in canvas pixels. */
+      cursorX = (offsetX + 0.5) * width;
+      cursorY = (offsetY + 0.5) * height;
+
       dust.forEach((particle) => {
         const baseX =
           (((particle.x * width + time * particle.drift * width) % width) +
@@ -781,9 +803,23 @@ function CosmicBackground() {
             height) +
             height) %
             height);
-        const x = baseX + offsetX * 52;
-        const y = baseY + offsetY * 38;
-        context.globalAlpha = particle.alpha;
+        let x = baseX + offsetX * 74 * vigour;
+        let y = baseY + offsetY * 54 * vigour;
+
+        /* Dust drifts around the pointer on a wider, softer radius. */
+        const ddx = x - cursorX;
+        const ddy = y - cursorY;
+        const ddist2 = ddx * ddx + ddy * ddy;
+        const wellRadius = 330;
+        let near = 0;
+        if (ddist2 < wellRadius * wellRadius) {
+          const dist = Math.sqrt(ddist2) || 0.001;
+          near = 1 - dist / wellRadius;
+          const push = near * near * 44;
+          x += (ddx / dist) * push;
+          y += (ddy / dist) * push;
+        }
+        context.globalAlpha = Math.min(0.16, particle.alpha * (1 + near * 0.7));
         context.drawImage(
           dustSprites[particle.hue],
           x - particle.r,
@@ -802,8 +838,12 @@ function CosmicBackground() {
 
     const animate = () => {
       time += 0.016;
+      const travel = Math.hypot(targetX - offsetX, targetY - offsetY);
       offsetX += (targetX - offsetX) * 0.055;
       offsetY += (targetY - offsetY) * 0.055;
+      /* Faster pointer travel pulls the field a little further. */
+      const targetVigour = Math.min(1.5, 1 + travel * 2.4);
+      vigour += (targetVigour - vigour) * 0.06;
       if (time > nextMeteor) {
         const fromLeft = Math.random() > 0.5;
         const startX = fromLeft
